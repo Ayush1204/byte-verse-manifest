@@ -1,0 +1,56 @@
+version: 0.0.4
+jobId: "620"
+jobName: Ayush_18ThApril
+jobType: Source Aligned Data Product
+alias: AyushSteps18th
+discoveryPort:
+  name: Ayush_18ThApril
+inputPorts:
+  - alias: Ayush_1
+    isDynamic: true
+    connection: Postgres-AWS
+    tableName/query: Ayush
+    optional:
+      persistDataFrame: false
+      enableDataReconciliation: false
+      enforceSchema: false
+      dataSetUrn: urn:dv:dataset:baed755d-924f-4082-beb5-2bd6aea47d41
+    type: readPostGreSqlDbUsingJdbc
+productState:
+  isDynamic: true
+  alias: AyushSteps18th
+  retentionVersions: ""
+  logicalSchema: ""
+  stateStoreType: loadDataIceberg
+  isProfilingEnabled: false
+  tableName: Amount
+  warehousePath: ""
+  catalogName: ""
+  optional:
+    persistDataFrame: false
+    enableDataReconciliation: false
+    enforceSchema: true
+    enforceSchemaMethod: Warning
+    catalogType: glue
+    connection: Ayush
+  refreshInterval: 1 * * * *
+transformation:
+  - isDynamic: true
+    alias: Filter_1
+    description: ""
+    sequence: 2
+    inputDataFrame: Ayush_1
+    filterCondition: ""
+    isConditionAsJsonString: false
+    optional:
+      persistDataFrame: false
+    type: filterTransform
+controlPort:
+  dataQualityRules: {}
+outputPort:
+  subscriptionChannels:
+    - channelType: Postgres
+      queryType: SQL
+    - channelType: Dataproduct
+      queryType: SQL
+timeout: 5
