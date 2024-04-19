@@ -3,7 +3,7 @@ jobId: "634"
 jobName: Testing_Ayush_19th
 jobType: Source Aligned Data Product
 domain: sale
-alias: ""
+alias: AyushSteps18th
 discoveryPort:
   name: Testing_Ayush_19th
 inputPorts:
@@ -35,9 +35,31 @@ inputPorts:
     type: readRedshiftTableByQuery
 productState:
   isDynamic: true
-  alias: ""
+  alias: AyushSteps18th_I
   retentionVersions: ""
-  logicalSchema: ""
+   logicalSchema:
+    properties:
+      City:
+        type: STRING
+        description: ""
+      Region:
+        type: STRING
+        description: ""
+      Country:
+        type: STRING
+        description: ""
+      Latitude:
+        type: STRING
+        description: ""
+      Longitude:
+        type: STRING
+        description: ""
+      Timezone:
+        type: STRING
+        description: ""
+      Local Time:
+        type: STRING
+        description: ""
   stateStoreType: writeDataFrameToBigQueryTable
   isProfilingEnabled: false
   projectId: ""
