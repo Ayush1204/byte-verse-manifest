@@ -1,52 +1,83 @@
-version: 0.0.9
-jobId: "587"
-jobName: Oracle DP
+version: 0.0.1
+jobId: "634"
+jobName: Testing_Ayush_19th
 jobType: Source Aligned Data Product
-domain: hr
-alias: load_data_to_oracle_sadp_ayush_1
+domain: sale
+alias: ""
 discoveryPort:
-  name: oracle_sadp_ayush_1
+  name: Testing_Ayush_19th
 inputPorts:
-  - alias: Oracle_Data_Set_Existing_1
+  - alias: Redshift_S3Connection_Dataset_1
     isDynamic: true
-    connection: Oracle Data Connection Existing
-    tableName/query: byte-etl-test.NEWTABLE
+    connection: Redshift
+    query: dsf
+    endPoint: dfg
+    temporaryPathS3: dfg
     optional:
+      s3connections: Base S3 Connectivity
       persistDataFrame: false
       enableDataReconciliation: false
       enforceSchema: false
-      dataSetUrn: urn:dv:dataset:a449a8da-f182-4741-8bc8-7d336b431d82
-    type: readOracleDbUsingJdbc
+      dataSetUrn: urn:dv:dataset:a292781e-806a-450a-a411-08054386ae6b
+    type: readRedshiftTableByQuery
+  - alias: Redshift_S3Connection_Dataset_2
+    isDynamic: true
+    connection: Redshift
+    query: dsf
+    endPoint: dfg
+    temporaryPathS3: dfg
+    optional:
+      s3connections: Base S3 Connectivity
+      persistDataFrame: false
+      enableDataReconciliation: false
+      enforceSchema: false
+      dataSetUrn: urn:dv:dataset:a292781e-806a-450a-a411-08054386ae6b
+    type: readRedshiftTableByQuery
 productState:
   isDynamic: true
-  alias: load_data_to_oracle_sadp
+  alias: ""
   retentionVersions: ""
-  logicalSchema:
-    properties:
-      name:
-        type: STRING
-        description: ""
-  stateStoreType: writeDataFrameToOracleTable
+  logicalSchema: ""
+  stateStoreType: writeDataFrameToBigQueryTable
   isProfilingEnabled: false
-  updateStrategy: Overwrite
-  connection: Oracle Data Connection Existing
-  tableName: '"byte-etl-test".NEWTABLE_ANEREE'
+  projectId: ""
+  tableName: ""
+  dataset: ""
+  serviceAccountCredential: ""
+  temporaryGcsBucketName: ""
   optional:
     persistDataFrame: false
+    addRunIdColumn: false
     enableDataReconciliation: false
     enforceSchema: false
-  refreshInterval: 0 10 31 2 1
+  refreshInterval: " 1 * * * *"
 transformation:
   - isDynamic: true
-    alias: Select_Columns_1
-    description: select a column
-    sequence: 2
-    inputDataFrame: Oracle_Data_Set_Existing_1
-    columns:
-      - name
+    alias: Join_1
+    description: ""
+    sequence: 3
+    leftDataFrame: Redshift_S3Connection_Dataset_1
+    rightDataFrame: Redshift_S3Connection_Dataset_2
+    joinKeys:
+      - leftKey: ""
+        rightKey: ""
+    joinType: ""
+    suffix:
+      leftSuffix: ""
+      rightSuffix: ""
+    mismatchDataFrameName: ""
     optional:
       persistDataFrame: false
-    type: selectColumns
+    type: joinDataframe
+  - isDynamic: true
+    alias: Union_1
+    description: ""
+    sequence: 4
+    inputDataFrame1: Join_1
+    optional:
+      persistDataFrame: false
+      mergeSchema: true
+    type: unionDataFrames
 controlPort:
   dataQualityRules: {}
 outputPort:
@@ -55,3 +86,4 @@ outputPort:
       queryType: SQL
     - channelType: Dataproduct
       queryType: SQL
+timeout: 10
