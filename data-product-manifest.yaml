@@ -1,7 +1,8 @@
-version: 0.0.4
-jobId: "620"
-jobName: Ayush_18ThApril
+version: 0.0.8
+jobId: "587"
+jobName: Oracle DP
 jobType: Source Aligned Data Product
+domain: hr
 alias: AyushSteps18th
 discoveryPort:
   name: Ayush_18ThApril
@@ -17,56 +18,35 @@ inputPorts:
       dataSetUrn: urn:dv:dataset:baed755d-924f-4082-beb5-2bd6aea47d41
     type: readPostGreSqlDbUsingJdbc
 productState:
-  isDynamic: true
+isDynamic: true
   alias: AyushSteps18th
   retentionVersions: ""
   logicalSchema:
     properties:
-      City:
+      name:
         type: STRING
         description: ""
-      Region:
-        type: STRING
-        description: ""
-      Country:
-        type: STRING
-        description: ""
-      Latitude:
-        type: STRING
-        description: ""
-      Longitude:
-        type: STRING
-        description: ""
-      Timezone:
-        type: STRING
-        description: ""
-      Local Time:
-        type: STRING
-        description: ""
-  stateStoreType: loadDataIceberg
+  stateStoreType: writeDataFrameToOracleTable
   isProfilingEnabled: false
-  tableName: Amount
-  warehousePath: ""
-  catalogName: ""
+  updateStrategy: Overwrite
+  connection: Oracle Data Connection Existing
+  tableName: '"byte-etl-test".NEWTABLE_ANEREE'
   optional:
     persistDataFrame: false
     enableDataReconciliation: false
-    enforceSchema: true
-    enforceSchemaMethod: Warning
-    catalogType: glue
-    connection: Ayush
-  refreshInterval: 1 * * * *
+    enforceSchema: false
+  refreshInterval: 0 10 31 2 1
 transformation:
   - isDynamic: true
-    alias: Filter_1
-    description: ""
+    alias: Select_Columns_1
+    description: select a column
     sequence: 2
-    inputDataFrame: Ayush_1
-    filterCondition: ""
-    isConditionAsJsonString: false
+    inputDataFrame: Oracle_Data_Set_Existing_1
+    columns:
+      - name
     optional:
       persistDataFrame: false
-    type: filterTransform
+    type: selectColumns
 controlPort:
   dataQualityRules: {}
 outputPort:
@@ -75,4 +55,3 @@ outputPort:
       queryType: SQL
     - channelType: Dataproduct
       queryType: SQL
-timeout: 5
