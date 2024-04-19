@@ -3,23 +3,23 @@ jobId: "587"
 jobName: Oracle DP
 jobType: Source Aligned Data Product
 domain: hr
-alias: AyushSteps18th
+alias: load_data_to_oracle_sadp_ayush_1
 discoveryPort:
-  name: Ayush_18ThApril
+  name: oracle_sadp_ayush_1
 inputPorts:
-  - alias: Ayush_1
+  - alias: Oracle_Data_Set_Existing_1
     isDynamic: true
-    connection: Postgres-AWS
-    tableName/query: Ayush
+    connection: Oracle Data Connection Existing
+    tableName/query: byte-etl-test.NEWTABLE
     optional:
       persistDataFrame: false
       enableDataReconciliation: false
       enforceSchema: false
-      dataSetUrn: urn:dv:dataset:baed755d-924f-4082-beb5-2bd6aea47d41
-    type: readPostGreSqlDbUsingJdbc
+      dataSetUrn: urn:dv:dataset:a449a8da-f182-4741-8bc8-7d336b431d82
+    type: readOracleDbUsingJdbc
 productState:
-isDynamic: true
-  alias: AyushSteps18th
+  isDynamic: true
+  alias: load_data_to_oracle_sadp
   retentionVersions: ""
   logicalSchema:
     properties:
@@ -49,9 +49,3 @@ transformation:
     type: selectColumns
 controlPort:
   dataQualityRules: {}
-outputPort:
-  subscriptionChannels:
-    - channelType: Postgres
-      queryType: SQL
-    - channelType: Dataproduct
-      queryType: SQL
