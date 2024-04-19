@@ -49,3 +49,9 @@ transformation:
     type: selectColumns
 controlPort:
   dataQualityRules: {}
+outputPort:
+  subscriptionChannels:
+    - channelType: Postgres
+      queryType: SQL
+    - channelType: Dataproduct
+      queryType: SQL
