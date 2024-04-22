@@ -1,11 +1,11 @@
 version: 0.0.2
 jobId: "634"
-jobName: Testing_Ayush_19th
+jobName: Testing_Ayush_19th_i
 jobType: Source Aligned Data Product
 domain: sale
-alias: AyushSteps18th
+alias: AyushSteps19th_i
 discoveryPort:
-  name: Testing_Ayush_19th
+  name: Testing_Ayush_19th_i
 inputPorts:
   - alias: Redshift_S3Connection_Dataset_1
     isDynamic: true
