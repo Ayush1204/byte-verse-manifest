@@ -1,43 +1,26 @@
-version: 0.0.2
-jobId: "634"
-jobName: Testing_Ayush_19th_i
+version: 0.0.4
+jobId: "620"
+jobName: Ayush_18ThApril
 jobType: Source Aligned Data Product
-domain: sale
-alias: AyushSteps19th_i
+alias: AyushSteps18th
 discoveryPort:
-  name: Testing_Ayush_19th_i
+  name: Ayush_18ThApril
 inputPorts:
-  - alias: Redshift_S3Connection_Dataset_1
+  - alias: Ayush_1
     isDynamic: true
-    connection: Redshift
-    query: dsf
-    endPoint: dfg
-    temporaryPathS3: dfg
+    connection: Postgres-AWS
+    tableName/query: Ayush
     optional:
-      s3connections: Base S3 Connectivity
       persistDataFrame: false
       enableDataReconciliation: false
       enforceSchema: false
-      dataSetUrn: urn:dv:dataset:a292781e-806a-450a-a411-08054386ae6b
-    type: readRedshiftTableByQuery
-  - alias: Redshift_S3Connection_Dataset_2
-    isDynamic: true
-    connection: Redshift
-    query: dsf
-    endPoint: dfg
-    temporaryPathS3: dfg
-    optional:
-      s3connections: Base S3 Connectivity
-      persistDataFrame: false
-      enableDataReconciliation: false
-      enforceSchema: false
-      dataSetUrn: urn:dv:dataset:a292781e-806a-450a-a411-08054386ae6b
-    type: readRedshiftTableByQuery
+      dataSetUrn: urn:dv:dataset:baed755d-924f-4082-beb5-2bd6aea47d41
+    type: readPostGreSqlDbUsingJdbc
 productState:
   isDynamic: true
-  alias: AyushSteps18th_I
+  alias: AyushSteps18th
   retentionVersions: ""
-   logicalSchema:
+  logicalSchema:
     properties:
       City:
         type: STRING
@@ -60,56 +43,30 @@ productState:
       Local Time:
         type: STRING
         description: ""
-  stateStoreType: writeDataFrameToBigQueryTable
+  stateStoreType: loadDataIceberg
   isProfilingEnabled: false
-  projectId: ""
-  tableName: ""
-  dataset: ""
-  serviceAccountCredential: ""
-  temporaryGcsBucketName: ""
+  tableName: Amount
+  warehousePath: ""
+  catalogName: ""
   optional:
     persistDataFrame: false
-    addRunIdColumn: false
     enableDataReconciliation: false
-    enforceSchema: false
-  refreshInterval: " 1 * * * *"
+    enforceSchema: true
+    enforceSchemaMethod: Warning
+    catalogType: glue
+    connection: Ayush
+  refreshInterval: 1 * * * *
 transformation:
-  - isDynamic: true
-    alias: Join_1
-    description: ""
-    sequence: 3
-    leftDataFrame: Redshift_S3Connection_Dataset_1
-    rightDataFrame: Redshift_S3Connection_Dataset_2
-    joinKeys:
-      - leftKey: ""
-        rightKey: ""
-    joinType: ""
-    suffix:
-      leftSuffix: ""
-      rightSuffix: ""
-    mismatchDataFrameName: ""
-    optional:
-      persistDataFrame: false
-    type: joinDataframe
   - isDynamic: true
     alias: Filter_1
     description: ""
-    sequence: 4
+    sequence: 2
+    inputDataFrame: Ayush_1
     filterCondition: ""
     isConditionAsJsonString: false
     optional:
       persistDataFrame: false
     type: filterTransform
-  - isDynamic: true
-    alias: Union_1
-    description: ""
-    sequence: 5
-    inputDataFrame1: Join_1
-    inputDataFrame2: Filter_1
-    optional:
-      persistDataFrame: false
-      mergeSchema: true
-    type: unionDataFrames
 controlPort:
   dataQualityRules: {}
 outputPort:
@@ -118,4 +75,4 @@ outputPort:
       queryType: SQL
     - channelType: Dataproduct
       queryType: SQL
-timeout: 10
+timeout: 5
