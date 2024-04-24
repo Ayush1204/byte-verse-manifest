@@ -1,9 +1,9 @@
-version: 0.0.1
+version: 0.0.2
 jobId: "687"
 jobName: AN
 jobType: Source Aligned Data Product
 domain: sale
-alias: ""
+alias: LoadtoIceberg1
 discoveryPort:
   name: AN
 inputPorts:
@@ -21,14 +21,14 @@ inputPorts:
     type: inputDelimited
 productState:
   isDynamic: true
-  alias: ""
+  alias: LoadtoIceberg1
   retentionVersions: ""
   logicalSchema: ""
   stateStoreType: loadDataIceberg
   isProfilingEnabled: false
-  tableName: ""
-  warehousePath: ""
-  catalogName: ""
+  tableName: s3source.NewTable
+  warehousePath: s3://bp-spark-sql-library-test-acc/
+  catalogName: glue
   optional:
     persistDataFrame: false
     enableDataReconciliation: false
@@ -39,12 +39,12 @@ productState:
 transformation:
   - isDynamic: true
     alias: Spark_SQL_1
-    description: ""
+    description: SelectAll
     sequence: 2
     inputDataFrameList:
       - inputDataFrame: Ayush24thTest_1
         tempViewName: ""
-    query: ""
+    query: Select * from weather
     optional:
       persistDataFrame: false
     type: operationThroughSqlQuery
