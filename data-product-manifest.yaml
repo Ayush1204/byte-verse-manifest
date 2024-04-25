@@ -1,4 +1,4 @@
-version: 0.0.8
+version: 0.0.9
 jobId: "687"
 jobName: AN
 jobType: Source Aligned Data Product
@@ -132,7 +132,7 @@ transformation:
     sequence: 2
     inputDataFrameList:
       - inputDataFrame: Ayush24thTest_1
-        tempViewName: weatherall
+        tempViewName: weather
     query: Select * from weather
     optional:
       persistDataFrame: false
