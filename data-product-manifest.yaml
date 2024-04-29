@@ -1,0 +1,62 @@
+version: 0.0.1
+jobId: "706"
+jobName: AyushSampleDataTest
+jobType: Source Aligned Data Product
+domain: sale
+alias: Loaddatatotest
+discoveryPort:
+  name: AyushSampleDataTest
+inputPorts:
+  - alias: AyushSampleTest_1
+    isDynamic: true
+    path: s3://byte-etl-externaldemo/sample-test/sampletest.csv
+    optional:
+      persistDataFrame: false
+      advanceOptions:
+        delimiter: ","
+      enableDataReconciliation: false
+      enforceSchema: false
+      connection: Ayush_S3connection
+      dataSetUrn: urn:dv:dataset:9fdbf8b0-8b7a-416d-8229-73a7a2442d3b
+    type: inputDelimited
+productState:
+  isDynamic: true
+  alias: Loaddatatotest
+  retentionVersions: ""
+  logicalSchema:
+    properties:
+      id:
+        type: STRING
+        description: ""
+      name:
+        type: STRING
+        description: ""
+      domain:
+        type: STRING
+        description: ""
+  stateStoreType: loadDataIceberg
+  isProfilingEnabled: false
+  updateStrategy: Overwrite
+  tableName: s3source.sample
+  warehousePath: s3://bp-spark-sql-library-test-acc/
+  catalogName: glue
+  optional:
+    persistDataFrame: false
+    enableDataReconciliation: false
+    enforceSchema: false
+    catalogType: glue
+  refreshInterval: None
+transformation:
+  - isDynamic: true
+    alias: Spark_SQL_1
+    description: SampleTest
+    sequence: 2
+    inputDataFrameList:
+      - inputDataFrame: AyushSampleTest_1
+        tempViewName: sample
+    query: Select * from sample
+    optional:
+      persistDataFrame: false
+    type: operationThroughSqlQuery
+controlPort:
+  dataQualityRules: {}
