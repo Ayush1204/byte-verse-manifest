@@ -1,4 +1,4 @@
-version: 0.0.2
+version: 0.0.3
 jobId: "706"
 jobName: AyushSampleDataTest
 jobType: Source Aligned Data Product
@@ -116,7 +116,7 @@ productState:
   isProfilingEnabled: false
   updateStrategy: Overwrite
   tableName: s3source.sample
-  warehousePath: s3://byte-etl-externaldemo/sample-test/Ayush_CRDP_sample_data.csv
+  warehousePath: s3://bp-spark-sql-library-test-acc/
   catalogName: glue
   optional:
     persistDataFrame: false
