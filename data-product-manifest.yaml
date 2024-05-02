@@ -1,4 +1,4 @@
-version: 0.0.2
+version: 0.0.3
 jobId: "707"
 jobName: NullDataCheckDP
 jobType: Source Aligned Data Product
@@ -25,91 +25,83 @@ productState:
   retentionVersions: ""
   logicalSchema:
     properties:
-      City:
+      lon:
         type: STRING
         description: ""
-      Region:
+        isPII: true
+      tz_id:
         type: STRING
         description: ""
-      Country:
+      localtime:
         type: STRING
         description: ""
-      Latitude:
+      cloud:
         type: STRING
         description: ""
-      Longitude:
+      feelslike_c:
         type: STRING
         description: ""
-      Timezone:
+      feelslike_f:
         type: STRING
         description: ""
-      Local Time:
+      gust_kph:
         type: STRING
         description: ""
-      Cloud ID:
+      gust_mph:
         type: STRING
         description: ""
-      Feels like Celcius:
+      humidity:
         type: STRING
         description: ""
-      Feels like fahrenheit:
+      is_day:
         type: STRING
         description: ""
-      Gust speed in kph:
+      last_updated:
         type: STRING
         description: ""
-      Gust speed in mph:
+      last_updated_epoch:
         type: STRING
         description: ""
-      Humidity:
+      precip_in:
         type: STRING
         description: ""
-      Is day time?:
+      precip_mm:
         type: STRING
         description: ""
-      Last update:
+      pressure_in:
         type: STRING
         description: ""
-      Last updated time in epoch:
+      pressure_mb:
         type: STRING
         description: ""
-      Precipitation in inch:
+      temp_c:
         type: STRING
         description: ""
-      Precipitation in mm:
+      temp_f:
         type: STRING
         description: ""
-      Pressure:
+      uv:
         type: STRING
         description: ""
-      Precipitation in mb:
+      vis_km:
         type: STRING
         description: ""
-      Temperature in celcius:
+      vis_miles:
         type: STRING
         description: ""
-      Temperature in fahrenheit:
+        isPII: true
+      wind_degree:
         type: STRING
         description: ""
-      UV:
+        isPII: true
+      wind_dir:
         type: STRING
         description: ""
-      Visibility in km:
+      wind_kph:
         type: STRING
         description: ""
-      Visibility in miles:
-        type: STRING
-        description: ""
-      Wind Degree:
-        type: STRING
-        description: ""
-      Wind Direction:
-        type: STRING
-        description: ""
-      Wind in kph:
-        type: STRING
-        description: ""
-      Wind in mph:
+        isPII: false
+      wind_mph:
         type: STRING
         description: ""
   stateStoreType: loadDataIceberg
