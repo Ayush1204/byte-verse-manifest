@@ -1,0 +1,142 @@
+version: 0.0.1
+jobId: "741"
+jobName: NewClmnCheckSADP
+jobType: Source Aligned Data Product
+domain: sale
+alias: NewClmnCheckSADPtest
+discoveryPort:
+  name: NewClmnCheckSADP
+inputPorts:
+  - alias: S3_Marketing_ayush_1
+    isDynamic: true
+    path: s3://byte-etl-externaldemo/weather_data/20230626110117.csv
+    optional:
+      persistDataFrame: false
+      advanceOptions:
+        delimiter: ","
+      enableDataReconciliation: false
+      enforceSchema: false
+      connection: Marketing_Ayush
+      dataSetUrn: urn:dv:dataset:2c1d3ba6-a741-43be-8ef6-4cda7444ee87
+    type: inputDelimited
+productState:
+  isDynamic: true
+  alias: NewClmnCheckSADPtest
+  retentionVersions: ""
+  logicalSchema:
+    properties:
+      City:
+        type: STRING
+        description: ""
+      Region:
+        type: STRING
+        description: ""
+      Country:
+        type: STRING
+        description: ""
+      Latitude:
+        type: STRING
+        description: ""
+      Longitude:
+        type: STRING
+        description: ""
+      Timezone:
+        type: STRING
+        description: ""
+      Local Time:
+        type: STRING
+        description: ""
+      Cloud ID:
+        type: STRING
+        description: ""
+      Feels like Celcius:
+        type: STRING
+        description: ""
+      Feels like fahrenheit:
+        type: STRING
+        description: ""
+      Gust speed in kph:
+        type: STRING
+        description: ""
+      Gust speed in mph:
+        type: STRING
+        description: ""
+      Humidity:
+        type: STRING
+        description: ""
+      Is day time?:
+        type: STRING
+        description: ""
+      Last update:
+        type: STRING
+        description: ""
+      Last updated time in epoch:
+        type: STRING
+        description: ""
+      Precipitation in inch:
+        type: STRING
+        description: ""
+      Precipitation in mm:
+        type: STRING
+        description: ""
+      Pressure:
+        type: STRING
+        description: ""
+      Precipitation in mb:
+        type: STRING
+        description: ""
+      Temperature in celcius:
+        type: STRING
+        description: ""
+      Temperature in fahrenheit:
+        type: STRING
+        description: ""
+      UV:
+        type: STRING
+        description: ""
+      Visibility in km:
+        type: STRING
+        description: ""
+      Visibility in miles:
+        type: STRING
+        description: ""
+      Wind Degree:
+        type: STRING
+        description: ""
+      Wind Direction:
+        type: STRING
+        description: ""
+      Wind in kph:
+        type: STRING
+        description: ""
+      Wind in mph:
+        type: STRING
+        description: ""
+  stateStoreType: loadDataFileToTable
+  isProfilingEnabled: false
+  updateStrategy: Append
+  connection: Ayush_S3connection
+  temporaryPath: .
+  tableName: NewClmnCheckSADP1
+  optional:
+    deleteQuery: Delete * from NewClmnCheckSADP1
+    header: true
+    persistDataFrame: false
+    addRunIdColumn: false
+    enableDataReconciliation: false
+    enforceSchema: false
+  refreshInterval: None
+transformation:
+  - isDynamic: true
+    alias: Refresh_Data_1
+    description: NewClmnCheckSADP
+    sequence: 2
+    inputDataFrame: S3_Marketing_ayush_1
+    timestampColumn: abvcd
+    primaryKey:
+      - id
+    optional:
+      persistDataFrame: false
+    type: refreshData
+controlPort:
+  dataQualityRules: {}
