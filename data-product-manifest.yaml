@@ -1,0 +1,121 @@
+version: 0.0.1
+jobId: "739"
+jobName: AyushBugTest
+jobType: Source Aligned Data Product
+domain: sale
+alias: arefiltertrue
+discoveryPort:
+  name: AyushBugTest
+inputPorts:
+  - alias: Ayush_S3_dataset_1
+    isDynamic: true
+    path: s3://byte-etl-externaldemo/weather_data/20230626110117.csv
+    optional:
+      persistDataFrame: false
+      advanceOptions:
+        delimiter: ","
+      enableDataReconciliation: false
+      enforceSchema: false
+      connection: Ayush_S3connection
+      dataSetUrn: urn:dv:dataset:fd08262f-e849-4dec-b56c-9c9aec8cf4bd
+    type: inputDelimited
+productState:
+  isDynamic: true
+  alias: arefiltertrue
+  retentionVersions: ""
+  logicalSchema:
+    properties:
+      lon:
+        type: STRING
+        description: ""
+        isPII: true
+      tz_id:
+        type: STRING
+        description: ""
+      localtime:
+        type: STRING
+        description: ""
+      cloud:
+        type: STRING
+        description: ""
+      feelslike_c:
+        type: STRING
+        description: ""
+      feelslike_f:
+        type: STRING
+        description: ""
+      gust_kph:
+        type: STRING
+        description: ""
+      gust_mph:
+        type: STRING
+        description: ""
+      humidity:
+        type: STRING
+        description: ""
+      is_day:
+        type: STRING
+        description: ""
+      last_updated:
+        type: STRING
+        description: ""
+      last_updated_epoch:
+        type: STRING
+        description: ""
+      precip_in:
+        type: STRING
+        description: ""
+      precip_mm:
+        type: STRING
+        description: ""
+      pressure_in:
+        type: STRING
+        description: ""
+      pressure_mb:
+        type: STRING
+        description: ""
+      temp_c:
+        type: STRING
+        description: ""
+      temp_f:
+        type: STRING
+        description: ""
+      uv:
+        type: STRING
+        description: ""
+      vis_km:
+        type: STRING
+        description: ""
+      vis_miles:
+        type: STRING
+        description: ""
+        isPII: true
+      wind_degree:
+        type: STRING
+        description: ""
+        isPII: true
+      wind_dir:
+        type: STRING
+        description: ""
+      wind_kph:
+        type: STRING
+        description: ""
+        isPII: false
+      wind_mph:
+        type: STRING
+        description: ""
+  stateStoreType: loadDataFileToTable
+  isProfilingEnabled: false
+  connection: Ayush_S3connection
+  temporaryPath: .
+  tableName: tablenew1
+  optional:
+    header: true
+    persistDataFrame: false
+    addRunIdColumn: false
+    enableDataReconciliation: false
+    enforceSchema: false
+  refreshInterval: None
+transformation: []
+controlPort:
+  dataQualityRules: {}
