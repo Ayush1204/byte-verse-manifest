@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 0.0.2
 jobId: "729"
 jobName: Ayush_SADP_Owner
 jobType: Source Aligned Data Product
@@ -133,7 +133,7 @@ transformation:
     inputDataFrameList:
       - inputDataFrame: Cloud_Test_Ayush_1
         tempViewName: weather
-    query: Select * from weathe
+    query: Select * from weather
     optional:
       persistDataFrame: false
     type: operationThroughSqlQuery
