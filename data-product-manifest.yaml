@@ -1,9 +1,9 @@
-version: 0.0.1
+version: 0.0.2
 jobId: "732"
 jobName: SADP_Weather_TR
 jobType: Source Aligned Data Product
 domain: marketing
-alias: LoadingdataToIceBerg
+alias: TransferingDataIceberg
 discoveryPort:
   name: SADP_Weather_TR
 inputPorts:
@@ -21,7 +21,7 @@ inputPorts:
     type: inputDelimited
 productState:
   isDynamic: true
-  alias: LoadingdataToIceBerg
+  alias: TransferingDataIceberg
   retentionVersions: ""
   logicalSchema:
     properties:
