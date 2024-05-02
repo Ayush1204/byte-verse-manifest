@@ -1,9 +1,9 @@
-version: 0.0.2
+version: 0.0.3
 jobId: "729"
 jobName: Ayush_SADP_Owner
 jobType: Source Aligned Data Product
 domain: cloud_global_service
-alias: LoadingdataToIceBerg
+alias: LoadingdataToIceBergtransfer
 discoveryPort:
   name: Ayush_SADP_Owner
 inputPorts:
@@ -21,7 +21,7 @@ inputPorts:
     type: inputDelimited
 productState:
   isDynamic: true
-  alias: LoadingdataToIceBerg
+  alias: LoadingdataToIceBergtransfer
   retentionVersions: ""
   logicalSchema:
     properties:
