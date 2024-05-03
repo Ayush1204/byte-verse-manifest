@@ -3,7 +3,7 @@ jobId: "741"
 jobName: NewClmnCheckSADP
 jobType: Source Aligned Data Product
 domain: hr
-alias: NewClmnCheckSADPtest
+alias: NewClmnCheckSADPtesttest
 discoveryPort:
   name: NewClmnCheckSADP
 inputPorts:
@@ -21,7 +21,7 @@ inputPorts:
     type: inputDelimited
 productState:
   isDynamic: true
-  alias: NewClmnCheckSADPtest
+  alias: NewClmnCheckSADPtest1
   retentionVersions: ""
   logicalSchema:
     properties:
