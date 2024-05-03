@@ -1,4 +1,4 @@
-version: 0.0.7
+version: 0.0.8
 jobId: "741"
 jobName: NewClmnCheckSADP
 jobType: Source Aligned Data Product
@@ -117,7 +117,7 @@ productState:
   updateStrategy: Append
   connection: AyushMySQL
   temporaryPath: /data/tmp/ayush_test
-  tableName: NewClmnCheckSADP1
+  tableName: NewClmnCheckSADP11
   optional:
     header: true
     persistDataFrame: false
