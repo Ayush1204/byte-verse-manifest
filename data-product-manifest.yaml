@@ -1,11 +1,11 @@
-version: 0.0.10
+version: 0.0.11
 jobId: "741"
-jobName: NewClmnCheckSADP1
+jobName: NewClmnCheckSADP
 jobType: Source Aligned Data Product
 domain: hr
-alias: NewClmnCheckSADPtesttest
+alias: NewClmnCheckSADPtest
 discoveryPort:
-  name: NewClmnCheckSADP1
+  name: NewClmnCheckSADP
 inputPorts:
   - alias: SQLDATASET_1
     isDynamic: true
@@ -21,7 +21,7 @@ inputPorts:
     type: inputDelimited
 productState:
   isDynamic: true
-  alias: NewClmnCheckSADPtest1
+  alias: NewClmnCheckSADPtest
   retentionVersions: ""
   logicalSchema:
     properties:
