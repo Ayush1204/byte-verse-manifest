@@ -1,4 +1,4 @@
-version: 0.0.4
+version: 0.0.6
 jobId: "741"
 jobName: NewClmnCheckSADP
 jobType: Source Aligned Data Product
@@ -9,7 +9,7 @@ discoveryPort:
 inputPorts:
   - alias: SQLDATASET_1
     isDynamic: true
-    path: weather/20230626110117.csv
+    path: /data/weather/20230626110117.csv
     optional:
       persistDataFrame: false
       advanceOptions:
@@ -114,12 +114,11 @@ productState:
         description: ""
   stateStoreType: loadDataFileToTable
   isProfilingEnabled: false
-  updateStrategy: TruncateAndOverwrite
+  updateStrategy: Overwrite
   connection: AyushMySQL
   temporaryPath: /data/tmp/ayush_test
   tableName: NewClmnCheckSADP1
   optional:
-    deleteQuery: Delete * from NewClmnCheckSADP1
     header: true
     persistDataFrame: false
     addRunIdColumn: false
@@ -128,15 +127,15 @@ productState:
   refreshInterval: None
 transformation:
   - isDynamic: true
-    alias: Refresh_Data_1
-    description: NewClmnCheckSADP
+    alias: Spark_SQL_1
+    description: testingclmn
     sequence: 2
-    inputDataFrame: SQLDATASET_1
-    timestampColumn: abvcd
-    primaryKey:
-      - id
+    inputDataFrameList:
+      - inputDataFrame: SQLDATASET_1
+        tempViewName: tabletempview
+    query: Select * from tabletempview
     optional:
       persistDataFrame: false
-    type: refreshData
+    type: operationThroughSqlQuery
 controlPort:
   dataQualityRules: {}
