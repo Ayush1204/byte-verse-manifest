@@ -1,4 +1,4 @@
-version: 0.0.8
+version: 0.0.9
 jobId: "741"
 jobName: NewClmnCheckSADP
 jobType: Source Aligned Data Product
@@ -133,7 +133,9 @@ transformation:
     inputDataFrameList:
       - inputDataFrame: SQLDATASET_1
         tempViewName: tabletempview
-    query: Select * from tabletempview
+    query: Select city,region,country,lat,lon,tz_id,localtime as localtimenew
+      ,cloud,feelslike_c,feelslike_f,gust_kph,gust_mph,humidity,is_day,last_updated,last_updated_epoch,precip_in,precip_mm,pressure_in,pressure_mb,temp_c,temp_f,uv,vis_km,vis_miles,wind_degree,wind_dir,wind_kph,wind_mph
+      from tabletempview
     optional:
       persistDataFrame: false
     type: operationThroughSqlQuery
