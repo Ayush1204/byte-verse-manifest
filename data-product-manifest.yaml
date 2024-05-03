@@ -1,4 +1,4 @@
-version: 0.0.3
+version: 0.0.4
 jobId: "741"
 jobName: NewClmnCheckSADP
 jobType: Source Aligned Data Product
@@ -7,17 +7,17 @@ alias: NewClmnCheckSADPtest
 discoveryPort:
   name: NewClmnCheckSADP
 inputPorts:
-  - alias: Aysuh_HR_DATASET_1
+  - alias: SQLDATASET_1
     isDynamic: true
-    path: s3://byte-etl-externaldemo/weather_data/20230626110117.csv
+    path: weather/20230626110117.csv
     optional:
       persistDataFrame: false
       advanceOptions:
         delimiter: ","
       enableDataReconciliation: false
       enforceSchema: false
-      connection: s3-user-miloni
-      dataSetUrn: urn:dv:dataset:4f6d6c57-97f2-45c4-af06-23fa1ec902d2
+      connection: ONPrem_Ayush
+      dataSetUrn: urn:dv:dataset:e4846556-6cd8-4ae9-a473-5bad7524d72d
     type: inputDelimited
 productState:
   isDynamic: true
@@ -114,7 +114,7 @@ productState:
         description: ""
   stateStoreType: loadDataFileToTable
   isProfilingEnabled: false
-  updateStrategy: Overwrite
+  updateStrategy: TruncateAndOverwrite
   connection: AyushMySQL
   temporaryPath: /data/tmp/ayush_test
   tableName: NewClmnCheckSADP1
@@ -131,7 +131,7 @@ transformation:
     alias: Refresh_Data_1
     description: NewClmnCheckSADP
     sequence: 2
-    inputDataFrame: Aysuh_HR_DATASET_1
+    inputDataFrame: SQLDATASET_1
     timestampColumn: abvcd
     primaryKey:
       - id
