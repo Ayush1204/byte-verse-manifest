@@ -1,4 +1,4 @@
-version: 0.0.22
+version: 0.0.23
 jobId: "741"
 jobName: NewClmnCheckSADPtester
 jobType: Source Aligned Data Product
@@ -114,11 +114,12 @@ productState:
         description: ""
   stateStoreType: loadDataFileToTable
   isProfilingEnabled: false
-  updateStrategy: Append
+  updateStrategy: Deleteinsert
   connection: AyushMySQL
   temporaryPath: /data/tmp/ayush_test
   tableName: NewClmnCheckSADP
   optional:
+    deleteQuery: delete * from NewClmnCheckSADP
     header: true
     persistDataFrame: false
     addRunIdColumn: false
