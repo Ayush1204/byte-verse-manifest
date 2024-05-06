@@ -1,0 +1,49 @@
+version: 0.0.1
+jobId: "753"
+jobName: CRDPScriptCheck
+jobType: Consumption Ready Data Product
+domain: quality
+alias: TestScript
+discoveryPort:
+  name: CRDPScriptCheck
+inputPorts:
+  - alias: Weather_API_Daily_1Jan_Redshift_1
+    isDynamic: true
+    dataProductUrn: urn:dv:dataproduct:6b23099d-e841-4e2b-9f87-99fa80a792da
+    filter: ""
+    projection: ""
+    optional:
+      persistDataFrame: false
+    type: dataproduct
+productState:
+  isDynamic: true
+  alias: TestScript
+  retentionVersions: ""
+  logicalSchema: ""
+  stateStoreType: loadDataIceberg
+  isProfilingEnabled: false
+  updateStrategy: Overwrite
+  tableName: s3Souece.crosscheck
+  warehousePath: s3://bp-spark-sql-library-test-acc/
+  catalogName: glue
+  optional:
+    persistDataFrame: false
+    enableDataReconciliation: false
+    enforceSchema: false
+    enforceSchemaMethod: Warning
+    catalogType: glue
+  refreshInterval: None
+transformation:
+  - isDynamic: true
+    alias: Spark_SQL_1
+    description: crosscheck
+    sequence: 2
+    inputDataFrameList:
+      - inputDataFrame: Weather_API_Daily_1Jan_Redshift_1
+        tempViewName: crosscheck
+    query: Select * from crosscheck
+    optional:
+      persistDataFrame: false
+    type: operationThroughSqlQuery
+controlPort:
+  dataQualityRules: {}
