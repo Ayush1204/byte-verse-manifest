@@ -1,4 +1,4 @@
-version: 0.0.20
+version: 0.0.21
 jobId: "741"
 jobName: NewClmnCheckSADPtester
 jobType: Source Aligned Data Product
@@ -119,7 +119,7 @@ productState:
   temporaryPath: /data/tmp/ayush_test
   tableName: NewClmnCheckSADP
   optional:
-    deleteQuery: delete from NewClmnCheckSADP where region ='Uttar Pradesh'
+    deleteQuery: delete from NewClmnCheckSADP where region ='Assam'
     header: true
     persistDataFrame: false
     addRunIdColumn: false
