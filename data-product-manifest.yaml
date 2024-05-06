@@ -1,4 +1,4 @@
-version: 0.0.24
+version: 0.0.25
 jobId: "741"
 jobName: NewClmnCheckSADPtester
 jobType: Source Aligned Data Product
@@ -119,7 +119,7 @@ productState:
   temporaryPath: /data/tmp/ayush_test
   tableName: NewClmnCheckSADP
   optional:
-    deleteQuery: Delete from NewClmnCheckSADP
+    deleteQuery: delete from NewClmnCheckSADP
     header: true
     persistDataFrame: false
     addRunIdColumn: false
