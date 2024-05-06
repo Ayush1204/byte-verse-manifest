@@ -1,4 +1,4 @@
-version: 0.0.15
+version: 0.0.16
 jobId: "741"
 jobName: NewClmnCheckSADPtester
 jobType: Source Aligned Data Product
@@ -114,7 +114,7 @@ productState:
         description: ""
   stateStoreType: loadDataFileToTable
   isProfilingEnabled: false
-  updateStrategy: TruncateAndOverwrite
+  updateStrategy: Append
   connection: AyushMySQL
   temporaryPath: /data/tmp/ayush_test
   tableName: NewClmnCheckSADP
@@ -135,7 +135,7 @@ transformation:
         tempViewName: tabletempview
     query: Select city,region,country,lat,lon,tz_id,localtime as localtimenew
       ,cloud,feelslike_c,feelslike_f,gust_kph,gust_mph,humidity,is_day,last_updated,last_updated_epoch,precip_in,precip_mm,pressure_in,pressure_mb,temp_c,temp_f,uv,vis_km,vis_miles,wind_degree,wind_dir,wind_kph,wind_mph
-      from tabletempview Limit 50
+      from tabletempview
     optional:
       persistDataFrame: false
     type: operationThroughSqlQuery
