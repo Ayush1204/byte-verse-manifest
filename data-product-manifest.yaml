@@ -1,0 +1,59 @@
+version: 0.0.1
+jobId: "763"
+jobName: ADP_QA_Test
+jobType: Aggregated Data Product
+domain: qa_test
+alias: kjnas
+discoveryPort:
+  name: ADP_QA_Test
+inputPorts:
+  - alias: SADPQA_Test_1
+    isDynamic: true
+    dataProductUrn: urn:dv:dataproduct:a9963d9e-4fbf-49e1-8d3b-58aa54de309a
+    filter: ""
+    projection: ""
+    optional:
+      persistDataFrame: false
+    type: dataproduct
+  - alias: SADPRhino_1
+    isDynamic: true
+    dataProductUrn: urn:dv:dataproduct:e247f4f2-3879-4c2a-bbb1-51c5244dee9a
+    filter: ""
+    projection: ""
+    optional:
+      persistDataFrame: false
+    type: dataproduct
+productState:
+  isDynamic: true
+  alias: kjnas
+  retentionVersions: ""
+  logicalSchema: ""
+  stateStoreType: loadDataIceberg
+  isProfilingEnabled: false
+  updateStrategy: Overwrite
+  tableName: s3source.templetable
+  warehousePath: s3://bp-spark-sql-library-test-acc/
+  catalogName: glue
+  optional:
+    persistDataFrame: false
+    enableDataReconciliation: false
+    enforceSchema: false
+    enforceSchemaMethod: Warning
+    catalogType: glue
+  refreshInterval: None
+transformation:
+  - isDynamic: true
+    alias: Spark_SQL_1
+    description: selectallstep
+    sequence: 3
+    inputDataFrameList:
+      - inputDataFrame: SADPQA_Test_1
+        tempViewName: sadpqa12
+      - inputDataFrame: SADPRhino_1
+        tempViewName: sadprhino123
+    query: select * from sadpqa12
+    optional:
+      persistDataFrame: false
+    type: operationThroughSqlQuery
+controlPort:
+  dataQualityRules: {}
