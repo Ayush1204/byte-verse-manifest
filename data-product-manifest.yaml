@@ -1,0 +1,96 @@
+version: 0.0.1
+jobId: "778"
+jobName: ADPTiger1
+jobType: Aggregated Data Product
+domain: tiger
+alias: ADPTiger1testing
+discoveryPort:
+  name: ADPTiger1
+inputPorts:
+  - alias: TigerTestSADP1_1
+    isDynamic: true
+    dataProductUrn: urn:dv:dataproduct:af81aa5a-c589-47a3-89fa-c6fd4e6a4c37
+    filter: ""
+    projection: ""
+    optional:
+      persistDataFrame: false
+    type: dataproduct
+  - alias: QATestSADP1_1
+    isDynamic: true
+    dataProductUrn: urn:dv:dataproduct:90fb28a2-7bbc-4e60-83d9-c47c78d46fa4
+    filter: ""
+    projection: ""
+    optional:
+      persistDataFrame: false
+    type: dataproduct
+productState:
+  isDynamic: true
+  alias: ADPTiger1testing
+  retentionVersions: ""
+  logicalSchema:
+    properties:
+      City:
+        type: STRING
+        description: ""
+      Region:
+        type: STRING
+        description: ""
+      Country:
+        type: STRING
+        description: ""
+      Latitude:
+        type: STRING
+        description: ""
+      Longitude:
+        type: STRING
+        description: ""
+      Timezone:
+        type: STRING
+        description: ""
+      Local Time:
+        type: STRING
+        description: ""
+      Cloud ID:
+        type: STRING
+        description: ""
+      Feels like Celcius:
+        type: STRING
+        description: ""
+      Feels like fahrenheit:
+        type: STRING
+        description: ""
+      Gust speed in kph:
+        type: STRING
+        description: ""
+      Gust speed in mph:
+        type: STRING
+        description: ""
+  stateStoreType: loadDataIceberg
+  isProfilingEnabled: false
+  updateStrategy: Overwrite
+  tableName: s3Source.ADPTiger1
+  warehousePath: s3://bp-spark-sql-library-test-acc/
+  catalogName: glue
+  optional:
+    persistDataFrame: false
+    enableDataReconciliation: false
+    enforceSchema: false
+    enforceSchemaMethod: Warning
+    catalogType: glue
+  refreshInterval: None
+transformation:
+  - isDynamic: true
+    alias: Spark_SQL_1
+    description: ADPTiger1
+    sequence: 3
+    inputDataFrameList:
+      - inputDataFrame: TigerTestSADP1_1
+        tempViewName: ADPTiger1SADP1
+      - inputDataFrame: QATestSADP1_1
+        tempViewName: ADPTiger1QASADP!
+    query: Select * from ADPTiger1
+    optional:
+      persistDataFrame: false
+    type: operationThroughSqlQuery
+controlPort:
+  dataQualityRules: {}
