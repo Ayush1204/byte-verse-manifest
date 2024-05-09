@@ -1,0 +1,90 @@
+version: 0.0.1
+jobId: "776"
+jobName: TigerTestSADP1
+jobType: Source Aligned Data Product
+domain: tiger
+alias: tigertestingstep
+discoveryPort:
+  name: TigerTestSADP1
+inputPorts:
+  - alias: AyushSampleTest_1
+    isDynamic: true
+    path: s3://byte-etl-externaldemo/sample-test/Ayush_CRDP_sample_data.csv
+    optional:
+      persistDataFrame: false
+      advanceOptions:
+        delimiter: ","
+      enableDataReconciliation: false
+      enforceSchema: false
+      connection: Ayush_S3connection
+      dataSetUrn: urn:dv:dataset:9fdbf8b0-8b7a-416d-8229-73a7a2442d3b
+    type: inputDelimited
+productState:
+  isDynamic: true
+  alias: tigertestingstep
+  retentionVersions: ""
+  logicalSchema:
+    properties:
+      City:
+        type: STRING
+        description: ""
+      Region:
+        type: STRING
+        description: ""
+      Country:
+        type: STRING
+        description: ""
+      Latitude:
+        type: STRING
+        description: ""
+      Longitude:
+        type: STRING
+        description: ""
+      Timezone:
+        type: STRING
+        description: ""
+      Local Time:
+        type: STRING
+        description: ""
+      Cloud ID:
+        type: STRING
+        description: ""
+      Feels like Celcius:
+        type: STRING
+        description: ""
+      Feels like fahrenheit:
+        type: STRING
+        description: ""
+      Gust speed in kph:
+        type: STRING
+        description: ""
+      Gust speed in mph:
+        type: STRING
+        description: ""
+  stateStoreType: loadDataIceberg
+  isProfilingEnabled: false
+  updateStrategy: Overwrite
+  tableName: s3Source.tigertesting
+  warehousePath: s3://bp-spark-sql-library-test-acc/
+  catalogName: glue
+  optional:
+    persistDataFrame: false
+    enableDataReconciliation: false
+    enforceSchema: false
+    enforceSchemaMethod: Warning
+    catalogType: glue
+  refreshInterval: None
+transformation:
+  - isDynamic: true
+    alias: Spark_SQL_1
+    description: Tigertesting
+    sequence: 2
+    inputDataFrameList:
+      - inputDataFrame: AyushSampleTest_1
+        tempViewName: tigertesting
+    query: Select * from tigertesting
+    optional:
+      persistDataFrame: false
+    type: operationThroughSqlQuery
+controlPort:
+  dataQualityRules: {}
