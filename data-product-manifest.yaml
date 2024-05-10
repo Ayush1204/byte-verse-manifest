@@ -1,0 +1,141 @@
+version: 0.0.1
+jobId: "791"
+jobName: GenAIDP2
+jobType: Source Aligned Data Product
+domain: sale
+alias: genaidp21
+discoveryPort:
+  name: GenAIDP2
+inputPorts:
+  - alias: SQLDATASET_1
+    isDynamic: true
+    path: /data/weather/20230626110117.csv
+    optional:
+      persistDataFrame: false
+      advanceOptions:
+        delimiter: ","
+      enableDataReconciliation: false
+      enforceSchema: false
+      connection: ONPrem_Ayush
+      dataSetUrn: urn:dv:dataset:e4846556-6cd8-4ae9-a473-5bad7524d72d
+    type: inputDelimited
+productState:
+  isDynamic: true
+  alias: genaidp21
+  retentionVersions: ""
+  logicalSchema:
+    properties:
+      City:
+        type: STRING
+        description: ""
+      Region:
+        type: STRING
+        description: ""
+      Country:
+        type: STRING
+        description: ""
+      Latitude:
+        type: STRING
+        description: ""
+      Longitude:
+        type: STRING
+        description: ""
+      Timezone:
+        type: STRING
+        description: ""
+      Local Time:
+        type: STRING
+        description: ""
+      Cloud ID:
+        type: STRING
+        description: ""
+      Feels like Celcius:
+        type: STRING
+        description: ""
+      Feels like fahrenheit:
+        type: STRING
+        description: ""
+      Gust speed in kph:
+        type: STRING
+        description: ""
+      Gust speed in mph:
+        type: STRING
+        description: ""
+      Humidity:
+        type: STRING
+        description: ""
+      Is day time?:
+        type: STRING
+        description: ""
+      Last update:
+        type: STRING
+        description: ""
+      Last updated time in epoch:
+        type: STRING
+        description: ""
+      Precipitation in inch:
+        type: STRING
+        description: ""
+      Precipitation in mm:
+        type: STRING
+        description: ""
+      Pressure:
+        type: STRING
+        description: ""
+      Precipitation in mb:
+        type: STRING
+        description: ""
+      Temperature in celcius:
+        type: STRING
+        description: ""
+      Temperature in fahrenheit:
+        type: STRING
+        description: ""
+      UV:
+        type: STRING
+        description: ""
+      Visibility in km:
+        type: STRING
+        description: ""
+      Visibility in miles:
+        type: STRING
+        description: ""
+      Wind Degree:
+        type: STRING
+        description: ""
+      Wind Direction:
+        type: STRING
+        description: ""
+      Wind in kph:
+        type: STRING
+        description: ""
+      Wind in mph:
+        type: STRING
+        description: ""
+  stateStoreType: loadDataIceberg
+  isProfilingEnabled: false
+  updateStrategy: Overwrite
+  tableName: s3Source.genaidp2
+  warehousePath: s3://bp-spark-sql-library-test-acc/
+  catalogName: glue
+  optional:
+    persistDataFrame: false
+    enableDataReconciliation: false
+    enforceSchema: false
+    enforceSchemaMethod: Warning
+    catalogType: glue
+  refreshInterval: None
+transformation:
+  - isDynamic: true
+    alias: Spark_SQL_1
+    description: genaidp2
+    sequence: 2
+    inputDataFrameList:
+      - inputDataFrame: SQLDATASET_1
+        tempViewName: genaidp2
+    query: Select * from genaidp2
+    optional:
+      persistDataFrame: false
+    type: operationThroughSqlQuery
+controlPort:
+  dataQualityRules: {}
