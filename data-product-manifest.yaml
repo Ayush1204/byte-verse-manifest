@@ -1,4 +1,4 @@
-version: 0.0.2
+version: 0.0.3
 jobId: "791"
 jobName: GenAIDP2
 jobType: Source Aligned Data Product
@@ -7,17 +7,17 @@ alias: genaidp21
 discoveryPort:
   name: GenAIDP2
 inputPorts:
-  - alias: S3_Marketing_ayush_1
+  - alias: AyushSampleTest_1
     isDynamic: true
-    path: s3://byte-etl-externaldemo/weather_data/20230626110117.csv
+    path: s3://byte-etl-externaldemo/sample-test/Ayush_CRDP_sample_data.csv
     optional:
       persistDataFrame: false
       advanceOptions:
         delimiter: ","
       enableDataReconciliation: false
       enforceSchema: false
-      connection: Marketing_Ayush
-      dataSetUrn: urn:dv:dataset:2c1d3ba6-a741-43be-8ef6-4cda7444ee87
+      connection: Ayush_S3connection
+      dataSetUrn: urn:dv:dataset:9fdbf8b0-8b7a-416d-8229-73a7a2442d3b
     type: inputDelimited
 productState:
   isDynamic: true
@@ -131,7 +131,7 @@ transformation:
     description: genaidp2
     sequence: 2
     inputDataFrameList:
-      - inputDataFrame: S3_Marketing_ayush_1
+      - inputDataFrame: AyushSampleTest_1
         tempViewName: ""
     query: Select * from genaidp2
     optional:
