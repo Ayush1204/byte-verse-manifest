@@ -1,4 +1,4 @@
-version: 0.0.3
+version: 0.0.4
 jobId: "791"
 jobName: GenAIDP2
 jobType: Source Aligned Data Product
@@ -132,7 +132,7 @@ transformation:
     sequence: 2
     inputDataFrameList:
       - inputDataFrame: AyushSampleTest_1
-        tempViewName: ""
+        tempViewName: genaidp2
     query: Select * from genaidp2
     optional:
       persistDataFrame: false
