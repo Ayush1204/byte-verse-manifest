@@ -1,0 +1,49 @@
+version: 0.0.1
+jobId: "801"
+jobName: NewLineagetest
+jobType: Aggregated Data Product
+domain: qa_test
+alias: loaddataotdp1
+discoveryPort:
+  name: NewLineagetest
+inputPorts:
+  - alias: GenAIDP2_1
+    isDynamic: true
+    dataProductUrn: urn:dv:dataproduct:78dd2d8e-b5c9-46c5-a274-909856da4b73
+    filter: ""
+    projection: ""
+    optional:
+      persistDataFrame: false
+    type: dataproduct
+productState:
+  isDynamic: true
+  alias: loaddataotdp1
+  retentionVersions: ""
+  logicalSchema: ""
+  stateStoreType: loadDataIceberg
+  isProfilingEnabled: false
+  updateStrategy: Overwrite
+  tableName: s3Source.lineagecheck
+  warehousePath: s3://bp-spark-sql-library-test-acc/
+  catalogName: glue
+  optional:
+    persistDataFrame: false
+    enableDataReconciliation: false
+    enforceSchema: false
+    enforceSchemaMethod: Warning
+    catalogType: glue
+  refreshInterval: None
+transformation:
+  - isDynamic: true
+    alias: Spark_SQL_1
+    description: lineagecheck
+    sequence: 2
+    inputDataFrameList:
+      - inputDataFrame: GenAIDP2_1
+        tempViewName: lineagecheck
+    query: Select * from lineagecheck
+    optional:
+      persistDataFrame: false
+    type: operationThroughSqlQuery
+controlPort:
+  dataQualityRules: {}
