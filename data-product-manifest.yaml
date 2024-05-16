@@ -1,9 +1,9 @@
-version: 0.0.1
+version: 0.0.2
 jobId: "813"
 jobName: chainsadp2
 jobType: Source Aligned Data Product
 domain: sale
-alias: allogether
+alias: allogether11
 discoveryPort:
   name: chainsadp2
 inputPorts:
@@ -25,7 +25,7 @@ inputPorts:
     type: dataproduct
 productState:
   isDynamic: true
-  alias: allogether
+  alias: allogether11
   retentionVersions: ""
   logicalSchema:
     properties:
