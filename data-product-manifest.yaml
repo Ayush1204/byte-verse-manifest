@@ -1,0 +1,102 @@
+version: 0.0.1
+jobId: "813"
+jobName: chainsadp2
+jobType: Source Aligned Data Product
+domain: sale
+alias: allogether
+discoveryPort:
+  name: chainsadp2
+inputPorts:
+  - alias: sadp_301_ayush_1
+    isDynamic: true
+    dataProductUrn: urn:dv:dataproduct:ffbc1b0d-f845-42d2-b5ff-9357a40dbbf6
+    filter: ""
+    projection: ""
+    optional:
+      persistDataFrame: false
+    type: dataproduct
+  - alias: sadp_401_ayush_1
+    isDynamic: true
+    dataProductUrn: urn:dv:dataproduct:b89990e9-b99b-49a4-8b25-46603f78a43a
+    filter: ""
+    projection: ""
+    optional:
+      persistDataFrame: false
+    type: dataproduct
+productState:
+  isDynamic: true
+  alias: allogether
+  retentionVersions: ""
+  logicalSchema:
+    properties:
+      Feels like fahrenheit:
+        type: STRING
+        description: ""
+      Gust speed in kph:
+        type: STRING
+        description: ""
+      Gust speed in mph:
+        type: STRING
+        description: ""
+      Humidity:
+        type: STRING
+        description: ""
+      Is day time?:
+        type: STRING
+        description: ""
+      Last update:
+        type: STRING
+        description: ""
+      Last updated time in epoch:
+        type: STRING
+        description: ""
+      Precipitation in inch:
+        type: STRING
+        description: ""
+      Precipitation in mm:
+        type: STRING
+        description: ""
+      Pressure:
+        type: STRING
+        description: ""
+      Precipitation in mb:
+        type: STRING
+        description: ""
+      Temperature in celcius:
+        type: STRING
+        description: ""
+      Temperature in fahrenheit:
+        type: STRING
+        description: ""
+      UV:
+        type: STRING
+        description: ""
+  stateStoreType: loadDataIceberg
+  isProfilingEnabled: false
+  updateStrategy: Overwrite
+  tableName: s3Source.supertable
+  warehousePath: s3://bp-spark-sql-library-test-acc/
+  catalogName: glue
+  optional:
+    persistDataFrame: false
+    enableDataReconciliation: false
+    enforceSchema: true
+    enforceSchemaMethod: Warning
+    catalogType: glue
+  refreshInterval: None
+transformation:
+  - isDynamic: true
+    alias: Spark_SQL_1
+    description: chainpyspark1
+    sequence: 3
+    inputDataFrameList:
+      - inputDataFrame: sadp_301_ayush_1
+        tempViewName: supertables
+      - inputDataFrame: sadp_401_ayush_1
+        tempViewName: supertables1
+    query: select * from supertable
+    optional:
+      persistDataFrame: false
+    type: operationThroughSqlQuery
+controlPort:
+  dataQualityRules: {}
