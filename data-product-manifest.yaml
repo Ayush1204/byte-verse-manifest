@@ -1,0 +1,117 @@
+version: 0.0.1
+jobId: "814"
+jobName: MutliAdp
+jobType: Aggregated Data Product
+domain: sale
+alias: mutliplesadptesting
+discoveryPort:
+  name: MutliAdp
+inputPorts:
+  - alias: chainsadp2_1
+    isDynamic: true
+    dataProductUrn: urn:dv:dataproduct:dca7eede-93f8-4ded-a565-fb468b730e64
+    filter: ""
+    projection: ""
+    optional:
+      persistDataFrame: false
+    type: dataproduct
+  - alias: chainsadp1_1
+    isDynamic: true
+    dataProductUrn: urn:dv:dataproduct:ce2a962c-c893-4e5b-a048-6490caaa07e9
+    filter: ""
+    projection: ""
+    optional:
+      persistDataFrame: false
+    type: dataproduct
+productState:
+  isDynamic: true
+  alias: mutliplesadptesting
+  retentionVersions: ""
+  logicalSchema:
+    properties:
+      City:
+        type: STRING
+        description: ""
+      Region:
+        type: STRING
+        description: ""
+      Country:
+        type: STRING
+        description: ""
+      Latitude:
+        type: STRING
+        description: ""
+      Longitude:
+        type: STRING
+        description: ""
+      Timezone:
+        type: STRING
+        description: ""
+      Local Time:
+        type: STRING
+        description: ""
+      Cloud ID:
+        type: STRING
+        description: ""
+      Feels like Celcius:
+        type: STRING
+        description: ""
+      Feels like fahrenheit:
+        type: STRING
+        description: ""
+      Gust speed in kph:
+        type: STRING
+        description: ""
+      Gust speed in mph:
+        type: STRING
+        description: ""
+      Humidity:
+        type: STRING
+        description: ""
+      Is day time?:
+        type: STRING
+        description: ""
+      Last update:
+        type: STRING
+        description: ""
+      Last updated time in epoch:
+        type: STRING
+        description: ""
+      Precipitation in inch:
+        type: STRING
+        description: ""
+      Precipitation in mm:
+        type: STRING
+        description: ""
+      Pressure:
+        type: STRING
+        description: ""
+  stateStoreType: loadDataIceberg
+  isProfilingEnabled: false
+  updateStrategy: Overwrite
+  tableName: s3Source.mutliplesadptest
+  warehousePath: s3://bp-spark-sql-library-test-acc/
+  catalogName: glue
+  optional:
+    persistDataFrame: false
+    enableDataReconciliation: false
+    enforceSchema: false
+    enforceSchemaMethod: Warning
+    catalogType: glue
+  refreshInterval: None
+transformation:
+  - isDynamic: true
+    alias: Spark_SQL_1
+    description: mutliplesadptest
+    sequence: 3
+    inputDataFrameList:
+      - inputDataFrame: chainsadp2_1
+        tempViewName: mutliplesadptest
+      - inputDataFrame: chainsadp1_1
+        tempViewName: mutliplesadptest1
+    query: select * from mutliplesadptest
+    optional:
+      persistDataFrame: false
+    type: operationThroughSqlQuery
+controlPort:
+  dataQualityRules: {}
