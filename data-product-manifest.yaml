@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 0.0.2
 jobId: "801"
 jobName: NewLineagetest
 jobType: Aggregated Data Product
@@ -19,7 +19,50 @@ productState:
   isDynamic: true
   alias: loaddataotdp1
   retentionVersions: ""
-  logicalSchema: ""
+  logicalSchema:
+    properties:
+      Feels like fahrenheit:
+        type: STRING
+        description: ""
+      Gust speed in kph:
+        type: STRING
+        description: ""
+      Gust speed in mph:
+        type: STRING
+        description: ""
+      Humidity:
+        type: STRING
+        description: ""
+      Is day time?:
+        type: STRING
+        description: ""
+      Last update:
+        type: STRING
+        description: ""
+      Last updated time in epoch:
+        type: STRING
+        description: ""
+      Precipitation in inch:
+        type: STRING
+        description: ""
+      Precipitation in mm:
+        type: STRING
+        description: ""
+      Pressure:
+        type: STRING
+        description: ""
+      Precipitation in mb:
+        type: STRING
+        description: ""
+      Temperature in celcius:
+        type: STRING
+        description: ""
+      Temperature in fahrenheit:
+        type: STRING
+        description: ""
+      UV:
+        type: STRING
+        description: ""
   stateStoreType: loadDataIceberg
   isProfilingEnabled: false
   updateStrategy: Overwrite
