@@ -1,0 +1,58 @@
+version: 0.0.1
+jobId: "810"
+jobName: chainsadp1
+jobType: Source Aligned Data Product
+domain: sale
+alias: ""
+discoveryPort:
+  name: chainsadp1
+inputPorts:
+  - alias: sadp_201_ayush_1
+    isDynamic: true
+    dataProductUrn: urn:dv:dataproduct:5deee9dc-4b1f-4f36-aa0a-8ad0caa5e11a
+    filter: ""
+    projection: ""
+    optional:
+      persistDataFrame: false
+    type: dataproduct
+  - alias: sadp_101_ayush_1
+    isDynamic: true
+    dataProductUrn: urn:dv:dataproduct:e6f9150d-948c-4efc-a779-0b423f717613
+    filter: ""
+    projection: ""
+    optional:
+      persistDataFrame: false
+    type: dataproduct
+productState:
+  isDynamic: true
+  alias: ""
+  retentionVersions: ""
+  logicalSchema: ""
+  stateStoreType: loadDataIceberg
+  isProfilingEnabled: false
+  tableName: ""
+  warehousePath: ""
+  catalogName: ""
+  optional:
+    persistDataFrame: false
+    enableDataReconciliation: false
+    enforceSchema: true
+    enforceSchemaMethod: Warning
+    catalogType: glue
+  refreshInterval: None
+transformation:
+  - isDynamic: true
+    alias: Spark_SQL_1
+    description: chainpyspark
+    sequence: 3
+    inputDataFrameList:
+      - inputDataFrame: sadp_101_ayush_1
+        tempViewName: alltable1
+      - inputDataFrame: sadp_201_ayush_1
+        tempViewName: alltable
+    query: select * from alltable
+    optional:
+      persistDataFrame: false
+    type: operationThroughSqlQuery
+controlPort:
+  dataQualityRules: {}
