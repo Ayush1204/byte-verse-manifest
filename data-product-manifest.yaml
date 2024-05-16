@@ -1,9 +1,9 @@
-version: 0.0.1
+version: 0.0.2
 jobId: "810"
 jobName: chainsadp1
 jobType: Source Aligned Data Product
 domain: sale
-alias: ""
+alias: allogether
 discoveryPort:
   name: chainsadp1
 inputPorts:
@@ -25,14 +25,58 @@ inputPorts:
     type: dataproduct
 productState:
   isDynamic: true
-  alias: ""
+  alias: allogether
   retentionVersions: ""
-  logicalSchema: ""
+  logicalSchema:
+    properties:
+      Feels like fahrenheit:
+        type: STRING
+        description: ""
+      Gust speed in kph:
+        type: STRING
+        description: ""
+      Gust speed in mph:
+        type: STRING
+        description: ""
+      Humidity:
+        type: STRING
+        description: ""
+      Is day time?:
+        type: STRING
+        description: ""
+      Last update:
+        type: STRING
+        description: ""
+      Last updated time in epoch:
+        type: STRING
+        description: ""
+      Precipitation in inch:
+        type: STRING
+        description: ""
+      Precipitation in mm:
+        type: STRING
+        description: ""
+      Pressure:
+        type: STRING
+        description: ""
+      Precipitation in mb:
+        type: STRING
+        description: ""
+      Temperature in celcius:
+        type: STRING
+        description: ""
+      Temperature in fahrenheit:
+        type: STRING
+        description: ""
+      UV:
+        type: STRING
+        description: ""
   stateStoreType: loadDataIceberg
   isProfilingEnabled: false
-  tableName: ""
-  warehousePath: ""
-  catalogName: ""
+  updateStrategy: Overwrite
+  tableName: alltable
+  warehousePath: s3://bp-spark-sql-library-test-acc/
+  catalogName: glue
   optional:
     persistDataFrame: false
     enableDataReconciliation: false
