@@ -1,0 +1,96 @@
+version: 0.0.1
+jobId: "804"
+jobName: newlinegecheck
+jobType: Source Aligned Data Product
+domain: sale
+alias: qatest1
+discoveryPort:
+  name: newlinegecheck
+inputPorts:
+  - alias: Ayush_S3_dataset_1
+    isDynamic: true
+    path: s3://byte-etl-externaldemo/weather_data/20230626110117.csv
+    optional:
+      persistDataFrame: false
+      advanceOptions:
+        delimiter: ","
+      enableDataReconciliation: false
+      enforceSchema: false
+      connection: Ayush_S3connection
+      dataSetUrn: urn:dv:dataset:fd08262f-e849-4dec-b56c-9c9aec8cf4bd
+    type: inputDelimited
+productState:
+  isDynamic: true
+  alias: qatest1
+  retentionVersions: ""
+  logicalSchema:
+    properties:
+      Feels like fahrenheit:
+        type: STRING
+        description: ""
+      Gust speed in kph:
+        type: STRING
+        description: ""
+      Gust speed in mph:
+        type: STRING
+        description: ""
+      Humidity:
+        type: STRING
+        description: ""
+      Is day time?:
+        type: STRING
+        description: ""
+      Last update:
+        type: STRING
+        description: ""
+      Last updated time in epoch:
+        type: STRING
+        description: ""
+      Precipitation in inch:
+        type: STRING
+        description: ""
+      Precipitation in mm:
+        type: STRING
+        description: ""
+      Pressure:
+        type: STRING
+        description: ""
+      Precipitation in mb:
+        type: STRING
+        description: ""
+      Temperature in celcius:
+        type: STRING
+        description: ""
+      Temperature in fahrenheit:
+        type: STRING
+        description: ""
+      UV:
+        type: STRING
+        description: ""
+  stateStoreType: loadDataIceberg
+  isProfilingEnabled: false
+  updateStrategy: Overwrite
+  tableName: s3Source.abcde
+  warehousePath: s3://bp-spark-sql-library-test-acc/
+  catalogName: glue
+  optional:
+    persistDataFrame: false
+    enableDataReconciliation: false
+    enforceSchema: true
+    enforceSchemaMethod: Warning
+    catalogType: glue
+  refreshInterval: None
+transformation:
+  - isDynamic: true
+    alias: Spark_SQL_1
+    description: abcf
+    sequence: 2
+    inputDataFrameList:
+      - inputDataFrame: Ayush_S3_dataset_1
+        tempViewName: abcde
+    query: select * from abcde
+    optional:
+      persistDataFrame: false
+    type: operationThroughSqlQuery
+controlPort:
+  dataQualityRules: {}
