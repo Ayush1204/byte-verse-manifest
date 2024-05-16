@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 0.0.2
 jobId: "814"
 jobName: MutliAdp
 jobType: Aggregated Data Product
@@ -15,9 +15,9 @@ inputPorts:
     optional:
       persistDataFrame: false
     type: dataproduct
-  - alias: chainsadp1_1
+  - alias: GenAIDP_1
     isDynamic: true
-    dataProductUrn: urn:dv:dataproduct:ce2a962c-c893-4e5b-a048-6490caaa07e9
+    dataProductUrn: urn:dv:dataproduct:7cde2d6b-1527-4764-b10b-cf0009c62013
     filter: ""
     projection: ""
     optional:
@@ -107,8 +107,8 @@ transformation:
     inputDataFrameList:
       - inputDataFrame: chainsadp2_1
         tempViewName: mutliplesadptest
-      - inputDataFrame: chainsadp1_1
-        tempViewName: mutliplesadptest1
+      - inputDataFrame: GenAIDP_1
+        tempViewName: ""
     query: select * from mutliplesadptest
     optional:
       persistDataFrame: false
