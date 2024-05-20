@@ -1,0 +1,58 @@
+version: 0.0.1
+jobId: "820"
+jobName: Hrproejct1
+jobType: Source Aligned Data Product
+developerId: fb302eb3-31f0-4180-8dcd-ff6b2305ad54
+domain: hr
+alias: Hrproejct1
+discoveryPort:
+  name: Hrproejct1
+inputPorts:
+  - alias: RowMissingData_1
+    isDynamic: true
+    path: s3://byte-etl-externaldemo/sample-test/Ayush_CRDP_sample_data_new.csv
+    optional:
+      persistDataFrame: false
+      advanceOptions:
+        delimiter: ","
+      enableDataReconciliation: false
+      enforceSchema: false
+      connection: Ayush_S3connection
+      dataSetUrn: urn:dv:dataset:46618bf2-2072-4959-8401-dd49e6025205
+    type: inputDelimited
+productState:
+  isDynamic: true
+  alias: Hrproejct1
+  retentionVersions: ""
+  logicalSchema:
+    properties:
+      city:
+        type: STRING
+        description: ""
+  stateStoreType: loadDataIceberg
+  isProfilingEnabled: false
+  updateStrategy: Overwrite
+  tableName: s3source.Hrproejct1
+  warehousePath: s3://
+  catalogName: glue
+  optional:
+    persistDataFrame: false
+    enableDataReconciliation: false
+    enforceSchema: true
+    enforceSchemaMethod: Warning
+    catalogType: glue
+  refreshInterval: None
+transformation:
+  - isDynamic: true
+    alias: Spark_SQL_1
+    description: Hrproejct1
+    sequence: 2
+    inputDataFrameList:
+      - inputDataFrame: RowMissingData_1
+        tempViewName: Hrproejct1
+    query: select * from Hrproejct1
+    optional:
+      persistDataFrame: false
+    type: operationThroughSqlQuery
+controlPort:
+  dataQualityRules: {}
