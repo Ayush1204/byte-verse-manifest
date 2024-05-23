@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 0.0.2
 jobId: "825"
 jobName: GenAIDpSales
 jobType: Source Aligned Data Product
@@ -8,17 +8,17 @@ alias: loaddataforgenai
 discoveryPort:
   name: GenAIDpSales
 inputPorts:
-  - alias: Secondary_Sales_1
+  - alias: POS_Sales_Transactions_1
     isDynamic: true
-    path: s3://bp-spark-sql-library-test-acc/secondary_sales_parquet/
+    path: s3://bp-spark-sql-library-test-acc/order_details/
     optional:
       persistDataFrame: false
       advanceOptions:
         mergeSchema: true
       enableDataReconciliation: false
       enforceSchema: false
-      connection: Base S3 Connectivity
-      dataSetUrn: urn:dv:dataset:5a075ca4-46b2-4988-ba1b-16c0cdf30f4f
+      connection: POS
+      dataSetUrn: urn:dv:dataset:f2991ebe-a951-485c-be0b-5e43a6113bac
     type: inputParquet
 productState:
   isDynamic: true
@@ -26,259 +26,97 @@ productState:
   retentionVersions: ""
   logicalSchema:
     properties:
-      pk_id:
+      DATE:
         type: STRING
-        description: ""
-      granularity:
-        type: STRING
-        description: ""
-      rowid:
-        type: STRING
-        description: ""
-      formatting:
-        type: STRING
-        description: ""
-      createddate:
-        type: STRING
-        description: ""
-      modifieddate:
-        type: STRING
-        description: ""
-      createdby:
-        type: STRING
-        description: ""
-      modifiedby:
-        type: STRING
-        description: ""
-      createdip:
-        type: STRING
-        description: ""
-      modifiedip:
-        type: STRING
-        description: ""
-      region:
-        type: STRING
-        description: ""
-      zsmcode:
-        type: STRING
-        description: ""
-      zsmname:
-        type: STRING
-        description: ""
-      ahcode:
-        type: STRING
-        description: ""
-      ahname:
-        type: STRING
-        description: ""
-      asmcode:
-        type: STRING
-        description: ""
-      asmname:
-        type: STRING
-        description: ""
-      socode:
-        type: STRING
-        description: ""
-      soname:
-        type: STRING
-        description: ""
-      statename:
-        type: STRING
-        description: ""
-      town:
-        type: STRING
-        description: ""
-      stockistcode:
-        type: STRING
-        description: ""
-      stockistname:
-        type: STRING
-        description: ""
-      stockisttype:
-        type: STRING
-        description: ""
-      ssmcode:
-        type: STRING
-        description: ""
-      ssmname:
-        type: STRING
-        description: ""
-      ssmclass:
-        type: STRING
-        description: ""
-      ssmsubclass:
-        type: STRING
-        description: ""
-      ssmcompcode:
-        type: STRING
-        description: ""
-      ssmstatus:
-        type: STRING
-        description: ""
-      retailerid:
-        type: STRING
-        description: ""
-      retailercode:
-        type: STRING
-        description: ""
-      retailername:
-        type: STRING
-        description: ""
-      nature_of_business:
-        type: STRING
-        description: ""
-      type_of_outlet:
+        description: Date of record
+      HOUR:
         type: STRING
-        description: ""
-      outlet_class:
-        type: STRING
-        description: ""
-      rtrcmpcode:
-        type: STRING
-        description: ""
-      reachcode:
-        type: STRING
-        description: ""
-      giscode:
-        type: STRING
-        description: ""
-      gsttinnumber:
-        type: STRING
-        description: ""
-      year:
-        type: STRING
-        description: ""
-      month:
-        type: STRING
-        description: ""
-      billno:
-        type: STRING
-        description: ""
-      billdate:
-        type: STRING
-        description: ""
-      bgcode:
-        type: STRING
-        description: ""
-      bgname:
-        type: STRING
-        description: ""
-      categoryid:
-        type: STRING
-        description: ""
-      categorycode:
-        type: STRING
-        description: ""
-      category:
-        type: STRING
-        description: ""
-      asbrandid:
-        type: STRING
-        description: ""
-      brandcode:
-        type: STRING
-        description: ""
-      brand:
-        type: STRING
-        description: ""
-      variantid:
-        type: STRING
-        description: ""
-      variantcode:
-        type: STRING
-        description: ""
-      variant:
-        type: STRING
-        description: ""
-      skuid:
-        type: STRING
-        description: ""
-      skucode:
+        description: Hour of record
+      ORDER_ID:
         type: STRING
-        description: ""
-      sku:
+        description: ID of the order
+      ORDER_NO:
         type: STRING
-        description: ""
-      productid:
+        description: Alphanumeric Order number
+      CUSTOMER_ID:
         type: STRING
-        description: ""
-      productcode:
+        description: Customer ID
+      ADDRESS_TYPE:
         type: STRING
-        description: ""
-      productname:
+        description: Type of address
+      ORDER_TYPE:
         type: STRING
-        description: ""
-      batchno:
+        description: Type of order
+      PAYMENT_MODE:
         type: STRING
-        description: ""
-      productupc:
+        description: Mode of payment
+      ORDER_MODE:
         type: STRING
-        description: ""
-      drishtiorderno:
+        description: Mode of order
+      ORDERED_ITEMS:
         type: STRING
-        description: ""
-      pono:
+        description: Distinct list of ordered items
+      COST:
         type: STRING
-        description: ""
-      podate:
+        description: Cost of the item
+      ITEMS_QUANTITY:
         type: STRING
-        description: ""
-      sfaorderno:
+        description: Quantity of items
+      ITEM_TYPE:
         type: STRING
-        description: ""
-      sfaordate:
+        description: Type of item
+      PROMO_CODE:
         type: STRING
-        description: ""
-      sfalat:
+        description: Promo code used if any
+      DELIVERY_RATING:
         type: STRING
-        description: ""
-      sfalng:
+        description: Delivery rating
+      STORE:
         type: STRING
-        description: ""
-      starttime:
+        description: Store location
+      CITY:
         type: STRING
-        description: ""
-      endtime:
+        description: City of the store
+      STATE:
         type: STRING
-        description: ""
-      pcs:
+        description: State of the store
+      ADJ_STORE:
         type: STRING
-        description: ""
-      cases:
+        description: Adjacent store name
+      ADJ_STORE_CNT:
         type: STRING
-        description: ""
-      value_ptr:
+        description: Adjacent store count
+      ADJ_STORES:
         type: STRING
-        description: ""
-      salesvalue:
+        description: Count of adjacent stores
+      NUMBER_OF_MEALS:
         type: STRING
-        description: ""
-      value_pts:
+        description: Number of meals in order
+      NUMBER_OF_LIQUIDS:
         type: STRING
-        description: ""
-      newproduct:
+        description: Number of liquid items in order
+      NUMBER_OF_SOLIDS:
         type: STRING
-        description: ""
-      test:
+        description: Number of solid items in the order
+      FAMILY_SIZE:
         type: STRING
-        description: ""
-      state:
+        description: Family size of order
+      CUSTOMER_TYPE:
         type: STRING
-        description: ""
-      district:
+        description: Type of customer
+      WEEKDAY:
         type: STRING
-        description: ""
-      focusbrand:
+        description: Weekday flag
+      CSAT:
         type: STRING
         description: ""
-      design:
+      LDO:
         type: STRING
         description: ""
-      bucode:
+      FAMILY_SIZE_GROUP:
         type: STRING
         description: ""
-      buname:
+      ITEMS_QUANTITY_GROUP:
         type: STRING
         description: ""
   stateStoreType: loadDataIceberg
@@ -300,8 +138,8 @@ transformation:
     description: GenAIDpSales
     sequence: 2
     inputDataFrameList:
-      - inputDataFrame: Secondary_Sales_1
-        tempViewName: genaidpsales
+      - inputDataFrame: POS_Sales_Transactions_1
+        tempViewName: ""
     query: Select * from genaidpsales
     optional:
       persistDataFrame: false
