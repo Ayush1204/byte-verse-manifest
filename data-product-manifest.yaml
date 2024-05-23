@@ -26,6 +26,27 @@ productState:
   retentionVersions: ""
   logicalSchema:
     properties:
+      pk_ID:
+        type: STRING
+        description: ""
+      granularity:
+        type: DATETIME
+        description: ""
+      rowID:
+        type: STRING
+        description: ""
+      formatting:
+        type: STRING
+        description: ""
+      createdDate:
+        type: STRING
+        description: ""
+      createdIP:
+        type: STRING
+        description: ""
+      modifiedIP:
+        type: STRING
+        description: ""
       DATE:
         type: STRING
         description: Date of record
