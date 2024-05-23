@@ -30,7 +30,7 @@ productState:
         type: STRING
         description: ""
       granularity:
-        type: DATETIME
+        type: STRING
         description: ""
       rowID:
         type: STRING
