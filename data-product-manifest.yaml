@@ -1,4 +1,4 @@
-version: 0.0.2
+version: 0.0.3
 jobId: "825"
 jobName: GenAIDpSales
 jobType: Source Aligned Data Product
@@ -139,7 +139,7 @@ transformation:
     sequence: 2
     inputDataFrameList:
       - inputDataFrame: POS_Sales_Transactions_1
-        tempViewName: ""
+        tempViewName: genaidpsales
     query: Select * from genaidpsales
     optional:
       persistDataFrame: false
