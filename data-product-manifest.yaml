@@ -1,4 +1,4 @@
-version: 0.0.6
+version: 0.0.7
 jobId: "825"
 jobName: GenAIDpSales
 jobType: Source Aligned Data Product
@@ -62,6 +62,7 @@ productState:
       CUSTOMER_ID:
         type: STRING
         description: Customer ID
+        isPII: "true"
       ADDRESS_TYPE:
         type: STRING
         description: Type of address
@@ -142,7 +143,7 @@ productState:
         description: ""
   stateStoreType: loadDataIceberg
   isProfilingEnabled: false
-  updateStrategy: Overwrite
+  updateStrategy: Append
   tableName: s3Source.genaidpsales
   warehousePath: s3://bp-spark-sql-library-test-acc/
   catalogName: glue
