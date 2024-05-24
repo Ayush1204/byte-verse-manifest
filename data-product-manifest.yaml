@@ -1,4 +1,4 @@
-version: 0.0.2
+version: 0.0.3
 jobId: "830"
 jobName: AyushSampleDataTest11
 jobType: Source Aligned Data Product
@@ -132,7 +132,7 @@ transformation:
     sequence: 2
     inputDataFrameList:
       - inputDataFrame: RowMissingData_1
-        tempViewName: ""
+        tempViewName: publishtable
     query: Select * from publishtable
     optional:
       persistDataFrame: false
