@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 0.0.2
 jobId: "830"
 jobName: AyushSampleDataTest11
 jobType: Source Aligned Data Product
@@ -8,16 +8,18 @@ alias: publishtable
 discoveryPort:
   name: AyushSampleDataTest11
 inputPorts:
-  - alias: Secondary_Sales_1
+  - alias: RowMissingData_1
     isDynamic: true
-    connection: Postgres MPC
-    tableName/query: s3source.secondary_sales_dev
+    path: s3://byte-etl-externaldemo/sample-test/Ayush_CRDP_sample_data_new.csv
     optional:
       persistDataFrame: false
+      advanceOptions:
+        delimiter: ","
       enableDataReconciliation: false
       enforceSchema: false
-      dataSetUrn: urn:dv:dataset:149f6bbe-0acb-4993-b8d6-31002e1562d5
-    type: readPostGreSqlDbUsingJdbc
+      connection: Ayush_S3connection
+      dataSetUrn: urn:dv:dataset:46618bf2-2072-4959-8401-dd49e6025205
+    type: inputDelimited
 productState:
   isDynamic: true
   alias: publishtable
@@ -129,8 +131,8 @@ transformation:
     description: publishtable
     sequence: 2
     inputDataFrameList:
-      - inputDataFrame: Secondary_Sales_1
-        tempViewName: publishtable
+      - inputDataFrame: RowMissingData_1
+        tempViewName: ""
     query: Select * from publishtable
     optional:
       persistDataFrame: false
