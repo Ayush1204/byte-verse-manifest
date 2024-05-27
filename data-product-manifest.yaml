@@ -1,4 +1,4 @@
-version: 0.0.2
+version: 0.0.3
 jobId: "832"
 jobName: dailysalesdata
 jobType: Source Aligned Data Product
@@ -8,17 +8,17 @@ alias: secondarydailytranscition
 discoveryPort:
   name: dailysalesdata
 inputPorts:
-  - alias: Secondary_Sales_1
+  - alias: POS_Sales_Transactions_1
     isDynamic: true
-    path: s3://bp-spark-sql-library-test-acc/secondary_sales_parquet/
+    path: s3://bp-spark-sql-library-test-acc/order_details/
     optional:
       persistDataFrame: false
       advanceOptions:
         mergeSchema: true
       enableDataReconciliation: false
       enforceSchema: false
-      connection: Base S3 Connectivity
-      dataSetUrn: urn:dv:dataset:5a075ca4-46b2-4988-ba1b-16c0cdf30f4f
+      connection: POS
+      dataSetUrn: urn:dv:dataset:f2991ebe-a951-485c-be0b-5e43a6113bac
     type: inputParquet
 productState:
   isDynamic: true
@@ -300,8 +300,8 @@ transformation:
     description: secondarysalestrxn
     sequence: 2
     inputDataFrameList:
-      - inputDataFrame: Secondary_Sales_1
-        tempViewName: dailytranscition
+      - inputDataFrame: POS_Sales_Transactions_1
+        tempViewName: ""
     query: select * from dailytranscition
     optional:
       persistDataFrame: false
