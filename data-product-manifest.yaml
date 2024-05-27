@@ -1,4 +1,4 @@
-version: 0.0.4
+version: 0.0.5
 jobId: "832"
 jobName: dailysalesdata
 jobType: Source Aligned Data Product
@@ -285,7 +285,7 @@ productState:
   isProfilingEnabled: false
   updateStrategy: Overwrite
   tableName: s3Source.dailytranscition
-  warehousePath: "  s3://bp-spark-sql-library-test-acc/"
+  warehousePath: s3://bp-spark-sql-library-test-acc/
   catalogName: glue
   optional:
     persistDataFrame: false
