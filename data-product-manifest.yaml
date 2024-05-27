@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 0.0.2
 jobId: "831"
 jobName: Newgenaidptest
 jobType: Source Aligned Data Product
@@ -145,7 +145,7 @@ productState:
   isProfilingEnabled: false
   updateStrategy: Overwrite
   tableName: s3Source.Newgenaidptest
-  warehousePath: ""
+  warehousePath: "  s3://bp-spark-sql-library-test-acc/"
   catalogName: glue
   optional:
     persistDataFrame: false
