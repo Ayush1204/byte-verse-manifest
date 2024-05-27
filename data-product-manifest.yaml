@@ -1,4 +1,4 @@
-version: 0.0.3
+version: 0.0.4
 jobId: "832"
 jobName: dailysalesdata
 jobType: Source Aligned Data Product
@@ -297,11 +297,11 @@ productState:
 transformation:
   - isDynamic: true
     alias: Spark_SQL_1
-    description: secondarysalestrxn
+    description: secondarysalestrxn1
     sequence: 2
     inputDataFrameList:
       - inputDataFrame: POS_Sales_Transactions_1
-        tempViewName: ""
+        tempViewName: dailytranscition
     query: select * from dailytranscition
     optional:
       persistDataFrame: false
