@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 0.0.2
 jobId: "836"
 jobName: LongDescSADP
 jobType: Source Aligned Data Product
@@ -75,18 +75,6 @@ productState:
         type: STRING
         description: ""
       Precipitation in inch:
-        type: STRING
-        description: ""
-      Precipitation in mm:
-        type: STRING
-        description: ""
-      Pressure:
-        type: STRING
-        description: ""
-      Precipitation in mb:
-        type: STRING
-        description: ""
-      Temperature in celcius:
         type: STRING
         description: ""
   stateStoreType: loadDataIceberg
