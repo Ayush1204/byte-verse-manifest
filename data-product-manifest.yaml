@@ -1,4 +1,4 @@
-version: 0.0.4
+version: 0.0.5
 jobId: "841"
 jobName: DescriptionCheckDP copy
 jobType: Source Aligned Data Product
@@ -131,7 +131,8 @@ transformation:
     inputDataFrameList:
       - inputDataFrame: SQLDATASET_1
         tempViewName: descriptionCheckDP1
-    query: select * from descriptionCheckDP1
+    query: select * from city,region,country,lat,lon,tz_id,localtime as localtimenew
+      ,cloud,feelslike_c,feelslike_f,gust_kph,gust_mph,humidity,is_day,last_updated,last_updated_epoch,precip_in,precip_mm,pressure_in,pressure_mb,temp_c,temp_f,uv,vis_km,vis_miles,wind_degree,wind_dir,wind_kph,wind_mph
     optional:
       persistDataFrame: false
     type: operationThroughSqlQuery
