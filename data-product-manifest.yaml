@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 0.0.2
 jobId: "840"
 jobName: DescriptionCheckDP
 jobType: Source Aligned Data Product
@@ -116,7 +116,7 @@ productState:
   stateStoreType: loadDataFileToTable
   isProfilingEnabled: false
   updateStrategy: Overwrite
-  connection: Oracle_Mansi
+  connection: MySQL_Mansi
   temporaryPath: /data/tmp/ayush_test
   tableName: new_ayush_test_table
   optional:
