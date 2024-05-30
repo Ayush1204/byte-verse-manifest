@@ -1,4 +1,4 @@
-version: 0.0.3
+version: 0.0.4
 jobId: "841"
 jobName: DescriptionCheckDP copy
 jobType: Source Aligned Data Product
@@ -42,9 +42,6 @@ productState:
         type: STRING
         description: ""
       Timezone:
-        type: STRING
-        description: ""
-      Local Time:
         type: STRING
         description: ""
       Cloud ID:
