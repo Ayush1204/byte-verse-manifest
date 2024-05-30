@@ -1,4 +1,4 @@
-version: 0.0.2
+version: 0.0.3
 jobId: "841"
 jobName: DescriptionCheckDP copy
 jobType: Source Aligned Data Product
@@ -8,17 +8,17 @@ alias: loaddatatonewtabledescriptionCheckDP1
 discoveryPort:
   name: DescriptionCheckDP copy
 inputPorts:
-  - alias: Weather_Full_Data_1
+  - alias: SQLDATASET_1
     isDynamic: true
-    path: s3://byte-etl-externaldemo/weather_data/*.csv
+    path: /data/weather/20230626110117.csv
     optional:
       persistDataFrame: false
       advanceOptions:
         delimiter: ","
       enableDataReconciliation: false
       enforceSchema: false
-      connection: Base S3 Connectivity
-      dataSetUrn: urn:dv:dataset:8df27fe0-a881-443e-ae1b-9168fd38621a
+      connection: ONPrem_Ayush
+      dataSetUrn: urn:dv:dataset:e4846556-6cd8-4ae9-a473-5bad7524d72d
     type: inputDelimited
 productState:
   isDynamic: true
@@ -132,7 +132,7 @@ transformation:
     description: senddatatonewtable1
     sequence: 2
     inputDataFrameList:
-      - inputDataFrame: Weather_Full_Data_1
+      - inputDataFrame: SQLDATASET_1
         tempViewName: descriptionCheckDP1
     query: select * from descriptionCheckDP1
     optional:
