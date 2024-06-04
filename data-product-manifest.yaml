@@ -1,4 +1,4 @@
-version: 0.0.2
+version: 0.0.3
 jobId: "849"
 jobName: ENCTest
 jobType: Source Aligned Data Product
@@ -50,7 +50,7 @@ transformation:
     inputDataFrameList:
       - inputDataFrame: Weather_Full_Data_1
         tempViewName: ENCTest
-    query: Selectg * from ENCTest
+    query: Select * from ENCTest
     optional:
       persistDataFrame: false
     type: operationThroughSqlQuery
