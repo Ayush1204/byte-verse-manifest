@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 0.0.2
 jobId: "848"
 jobName: encryptDP
 jobType: Source Aligned Data Product
@@ -8,16 +8,18 @@ alias: loaddatatoencrypt
 discoveryPort:
   name: encryptDP
 inputPorts:
-  - alias: Secondary_Sales_1
+  - alias: POS_Sales_Transactions_1
     isDynamic: true
-    connection: Postgres MPC
-    tableName/query: s3source.secondary_sales_dev
+    path: s3://bp-spark-sql-library-test-acc/order_details/
     optional:
       persistDataFrame: false
+      advanceOptions:
+        mergeSchema: true
       enableDataReconciliation: false
       enforceSchema: false
-      dataSetUrn: urn:dv:dataset:149f6bbe-0acb-4993-b8d6-31002e1562d5
-    type: readPostGreSqlDbUsingJdbc
+      connection: POS
+      dataSetUrn: urn:dv:dataset:f2991ebe-a951-485c-be0b-5e43a6113bac
+    type: inputParquet
 productState:
   isDynamic: true
   alias: loaddatatoencrypt
@@ -155,10 +157,10 @@ productState:
 transformation:
   - isDynamic: true
     alias: Spark_SQL_1
-    description: sparkconert
+    description: sparkcoonnecttable
     sequence: 2
     inputDataFrameList:
-      - inputDataFrame: Secondary_Sales_1
+      - inputDataFrame: POS_Sales_Transactions_1
         tempViewName: encrypttable
     query: select * from encrypttable
     optional:
