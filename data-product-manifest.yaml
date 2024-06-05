@@ -3,9 +3,9 @@ jobId: "804"
 jobName: newlinegecheck
 jobType: Source Aligned Data Product
 domain: sale
-alias: qatest1
+alias: qatest120
 discoveryPort:
-  name: newlinegecheck
+  name: newlinegecheckkar
 inputPorts:
   - alias: Ayush_S3_dataset_1
     isDynamic: true
