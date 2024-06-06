@@ -1,11 +1,11 @@
 version: 0.0.1
 jobId: "735"
-jobName: DraftDP
+jobName: DraftDP12
 jobType: Source Aligned Data Product
-domain: marketing
-alias: icebergrpayroll
+domain: sale
+alias: icebergrpayroll1
 discoveryPort:
-  name: DraftDP
+  name: DraftDP12
 inputPorts:
   - alias: S3_Marketing_ayush_1
     isDynamic: true
