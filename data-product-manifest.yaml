@@ -1,12 +1,12 @@
 version: 0.0.3
 jobId: "836"
-jobName: LongDescSADP1
+jobName: LongDescSADP
 jobType: Source Aligned Data Product
 developerId: fb302eb3-31f0-4180-8dcd-ff6b2305ad54
 domain: sale
-alias: checkingneetincode1
+alias: checkingneetincode
 discoveryPort:
-  name: LongDescSADP11
+  name: LongDescSADP
   shortDescription: This is a short description for Dataproduct check from manifest
 inputPorts:
   - alias: RowMissingData_1
