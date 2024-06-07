@@ -1,12 +1,12 @@
 version: 0.0.2
 jobId: "836"
-jobName: LongDescSADP
+jobName: LongDescSADP1
 jobType: Source Aligned Data Product
 developerId: fb302eb3-31f0-4180-8dcd-ff6b2305ad54
 domain: sale
-alias: checkingneetincode
+alias: checkingneetincode1
 discoveryPort:
-  name: LongDescSADP
+  name: LongDescSADP11
 inputPorts:
   - alias: RowMissingData_1
     isDynamic: true
