@@ -254,7 +254,7 @@ productState:
   stateStoreType: loadDataIceberg
   isProfilingEnabled: false
   updateStrategy: Overwrite
-  tableName: s3source.ayush_sales_gen
+  tableName: s3source..secondary_sales_details_zens
   warehousePath: s3://bp-spark-sql-library-test-acc/
   catalogName: glue
   optional:
