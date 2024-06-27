@@ -1,4 +1,4 @@
-version: 0.0.3
+version: 0.0.2
 jobId: "895"
 jobName: Sales Gen AI
 jobType: Source Aligned Data Product
@@ -254,7 +254,7 @@ productState:
   stateStoreType: loadDataIceberg
   isProfilingEnabled: false
   updateStrategy: Overwrite
-  tableName: s3source.ayush_sales_gen_test
+  tableName: s3source.ayush_sales_gen_test_none
   warehousePath: s3://bp-spark-sql-library-test-acc/
   catalogName: glue
   optional:
