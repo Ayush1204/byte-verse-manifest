@@ -1,4 +1,4 @@
-version: 0.0.2
+version: 0.0.4
 jobId: "931"
 jobName: Sales_Update_DP_Test
 jobType: Source Aligned Data Product
@@ -253,7 +253,7 @@ productState:
         description: ""
   stateStoreType: loadDataIceberg
   isProfilingEnabled: false
-  updateStrategy: Overwrite
+  updateStrategy: Append
   tableName: s3source.dummy_sales_test_update
   warehousePath: s3://bp-spark-sql-library-test-acc/
   catalogName: glue
