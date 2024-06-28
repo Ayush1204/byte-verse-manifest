@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 0.0.2
 jobId: "934"
 jobName: DataPublishCheck
 jobType: Source Aligned Data Product
@@ -26,9 +26,6 @@ productState:
   retentionVersions: ""
   logicalSchema:
     properties:
-      pk_id:
-        type: STRING
-        description: ""
       granularity:
         type: STRING
         description: ""
@@ -283,7 +280,7 @@ productState:
         description: ""
   stateStoreType: loadDataIceberg
   isProfilingEnabled: false
-  updateStrategy: Append
+  updateStrategy: Overwrite
   tableName: s3Source.all_sales_data12
   warehousePath: s3://bp-spark-sql-library-test-acc/
   catalogName: glue
