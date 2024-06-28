@@ -1,4 +1,4 @@
-version: 0.0.5
+version: 0.0.6
 jobId: "931"
 jobName: Sales_Update_DP_Test
 jobType: Source Aligned Data Product
@@ -26,24 +26,6 @@ productState:
   retentionVersions: ""
   logicalSchema:
     properties:
-      region:
-        type: STRING
-        description: ""
-      zsmcode:
-        type: STRING
-        description: ""
-      zsmname:
-        type: STRING
-        description: ""
-      ahcode:
-        type: STRING
-        description: ""
-      ahname:
-        type: STRING
-        description: ""
-      asmcode:
-        type: STRING
-        description: ""
       asmname:
         type: STRING
         description: ""
