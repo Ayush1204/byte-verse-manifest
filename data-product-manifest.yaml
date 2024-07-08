@@ -1,10 +1,10 @@
-version: 0.0.6
+version: 0.0.8
 jobId: "931"
 jobName: Sales_Update_DP_Test
 jobType: Source Aligned Data Product
 developerId: fb302eb3-31f0-4180-8dcd-ff6b2305ad54
 domain: finance
-alias: write_to_updated_sales_test_new
+alias: randomw
 discoveryPort:
   name: Sales_Update_DP_Test
 inputPorts:
@@ -22,7 +22,7 @@ inputPorts:
     type: inputParquet
 productState:
   isDynamic: true
-  alias: write_to_updated_sales_test_new
+  alias: randomw
   retentionVersions: ""
   logicalSchema:
     properties:
@@ -233,18 +233,18 @@ productState:
       buname:
         type: STRING
         description: ""
-  stateStoreType: loadDataIceberg
+  stateStoreType: loadDataFileToTable
   isProfilingEnabled: false
-  updateStrategy: Overwrite
-  tableName: s3source.dummy_sales_test_update
-  warehousePath: s3://bp-spark-sql-library-test-acc/
-  catalogName: glue
+  updateStrategy: Append
+  connection: S3 Ayush Connection
+  temporaryPath: data/tmp_path
+  tableName: ayushtabledelete1
   optional:
+    header: true
     persistDataFrame: false
+    addRunIdColumn: false
     enableDataReconciliation: false
     enforceSchema: false
-    enforceSchemaMethod: Warning
-    catalogType: glue
   refreshInterval: None
 transformation:
   - isDynamic: true
