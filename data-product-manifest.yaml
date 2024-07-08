@@ -1,4 +1,4 @@
-version: 0.0.10
+version: 0.0.11
 jobId: "931"
 jobName: Sales_Update_DP_Test
 jobType: Source Aligned Data Product
@@ -8,30 +8,18 @@ alias: write_to_updated_sales_test_new
 discoveryPort:
   name: Sales_Update_DP_Test
 inputPorts:
-  - alias: Secondary_Sales_1
+  - alias: Weather_Data_1
     isDynamic: true
-    path: s3://bp-spark-sql-library-test-acc/secondary_sales_parquet/
+    path: s3://byte-etl-externaldemo/weather_data/2024*.csv
     optional:
       persistDataFrame: false
       advanceOptions:
-        mergeSchema: true
+        delimiter: ","
       enableDataReconciliation: false
       enforceSchema: false
       connection: Base S3 Connectivity
-      dataSetUrn: urn:dv:dataset:5a075ca4-46b2-4988-ba1b-16c0cdf30f4f
-    type: inputParquet
-  - alias: Secondary_Sales_2
-    isDynamic: true
-    path: s3://bp-spark-sql-library-test-acc/secondary_sales_parquet/
-    optional:
-      persistDataFrame: false
-      advanceOptions:
-        mergeSchema: true
-      enableDataReconciliation: false
-      enforceSchema: false
-      connection: Base S3 Connectivity
-      dataSetUrn: urn:dv:dataset:5a075ca4-46b2-4988-ba1b-16c0cdf30f4f
-    type: inputParquet
+      dataSetUrn: urn:dv:dataset:3420b778-058c-4158-9c1f-f141913edd2a
+    type: inputDelimited
 productState:
   isDynamic: true
   alias: write_to_updated_sales_test_new
@@ -262,11 +250,9 @@ transformation:
   - isDynamic: true
     alias: Spark_SQL_1
     description: data source spark test updated
-    sequence: 3
+    sequence: 2
     inputDataFrameList:
-      - inputDataFrame: Secondary_Sales_1
-        tempViewName: sales_updated_new_12
-      - inputDataFrame: Secondary_Sales_2
+      - inputDataFrame: Weather_Data_1
         tempViewName: ""
     query: Select * from sales_updated_new_12
     optional:
