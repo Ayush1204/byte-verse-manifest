@@ -1,4 +1,4 @@
-version: 0.0.9
+version: 0.0.10
 jobId: "931"
 jobName: Sales_Update_DP_Test
 jobType: Source Aligned Data Product
@@ -9,6 +9,18 @@ discoveryPort:
   name: Sales_Update_DP_Test
 inputPorts:
   - alias: Secondary_Sales_1
+    isDynamic: true
+    path: s3://bp-spark-sql-library-test-acc/secondary_sales_parquet/
+    optional:
+      persistDataFrame: false
+      advanceOptions:
+        mergeSchema: true
+      enableDataReconciliation: false
+      enforceSchema: false
+      connection: Base S3 Connectivity
+      dataSetUrn: urn:dv:dataset:5a075ca4-46b2-4988-ba1b-16c0cdf30f4f
+    type: inputParquet
+  - alias: Secondary_Sales_2
     isDynamic: true
     path: s3://bp-spark-sql-library-test-acc/secondary_sales_parquet/
     optional:
@@ -250,10 +262,12 @@ transformation:
   - isDynamic: true
     alias: Spark_SQL_1
     description: data source spark test updated
-    sequence: 2
+    sequence: 3
     inputDataFrameList:
       - inputDataFrame: Secondary_Sales_1
         tempViewName: sales_updated_new_12
+      - inputDataFrame: Secondary_Sales_2
+        tempViewName: ""
     query: Select * from sales_updated_new_12
     optional:
       persistDataFrame: false
