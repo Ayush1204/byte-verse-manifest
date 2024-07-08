@@ -1,4 +1,4 @@
-version: 0.0.13
+version: 0.0.14
 jobId: "931"
 jobName: Sales_Update_DP_Test
 jobType: Source Aligned Data Product
@@ -248,14 +248,15 @@ productState:
   refreshInterval: None
 transformation:
   - isDynamic: true
-    alias: Select_Columns_1
-    description: selectthecolumn
+    alias: Spark_SQL_1
+    description: data source spark test updated
     sequence: 2
-    inputDataFrame: Secondary_Sales_1
-    columns:
-      - name
+    inputDataFrameList:
+      - inputDataFrame: Secondary_Sales_1
+        tempViewName: dummy_sales_test_update
+    query: Select * from sales_updated_new_12
     optional:
       persistDataFrame: false
-    type: selectColumns
+    type: operationThroughSqlQuery
 controlPort:
   dataQualityRules: {}
