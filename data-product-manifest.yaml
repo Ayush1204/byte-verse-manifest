@@ -1,10 +1,10 @@
-version: 0.0.4
+version: 0.0.5
 jobId: "968"
 jobName: Special Character Bug Test
 jobType: Source Aligned Data Product
 developerId: fb302eb3-31f0-4180-8dcd-ff6b2305ad54
 domain: sale
-alias: specialCharacterIssue'1_#
+alias: specialCharacterIssue_
 discoveryPort:
   name: Special Character Bug Test
 inputPorts:
@@ -22,7 +22,7 @@ inputPorts:
     type: inputParquet
 productState:
   isDynamic: true
-  alias: specialCharacterIssue'1_#
+  alias: specialCharacterIssue_
   retentionVersions: ""
   logicalSchema:
     properties:
