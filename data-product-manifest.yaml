@@ -1,0 +1,79 @@
+version: 0.0.1
+jobId: "963"
+jobName: GCP_test_DP
+jobType: Source Aligned Data Product
+developerId: fb302eb3-31f0-4180-8dcd-ff6b2305ad54
+domain: manufacturing
+alias: biglakeiceberg
+discoveryPort:
+  name: GCP_test_DP
+inputPorts:
+  - alias: GCP_dabur_1
+    isDynamic: true
+    path: /dabur_poc_inutdata/weather_data/20240118095755.csv
+    optional:
+      persistDataFrame: false
+      advanceOptions:
+        delimiter: ","
+      enableDataReconciliation: false
+      enforceSchema: false
+      connection: GCP_Ayush
+      dataSetUrn: urn:dv:dataset:f3ad834c-377d-4c41-9840-d1da484b01d1
+    type: inputDelimited
+productState:
+  isDynamic: true
+  alias: biglakeiceberg
+  retentionVersions: ""
+  logicalSchema:
+    properties:
+      REGION:
+        type: STRING
+        description: ""
+      ZSMCODE:
+        type: STRING
+        description: ""
+      rowID:
+        type: STRING
+        description: ""
+      formatting:
+        type: STRING
+        description: ""
+      createdDate:
+        type: STRING
+        description: ""
+      createdIP:
+        type: STRING
+        description: ""
+      modifiedIP:
+        type: STRING
+        description: ""
+      DATE:
+        type: STRING
+        description: Date of record
+  stateStoreType: loadDataIceberg
+  isProfilingEnabled: false
+  updateStrategy: Overwrite
+  tableName: iceberg_db.gcp_dabur_data
+  warehousePath: gs://dabur_poc_inutdata/iceberg_warehouse/
+  catalogName: iceberg_schema
+  optional:
+    persistDataFrame: false
+    enableDataReconciliation: false
+    enforceSchema: false
+    enforceSchemaMethod: Warning
+    catalogType: biglake
+  refreshInterval: None
+transformation:
+  - isDynamic: true
+    alias: Spark_SQL_1
+    description: loadsparkfile
+    sequence: 2
+    inputDataFrameList:
+      - inputDataFrame: GCP_dabur_1
+        tempViewName: _gcp_dabur_data
+    query: select * from gcp_dabur_data
+    optional:
+      persistDataFrame: false
+    type: operationThroughSqlQuery
+controlPort:
+  dataQualityRules: {}
