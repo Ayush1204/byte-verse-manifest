@@ -1,10 +1,10 @@
 version: 0.0.2
 jobId: "979"
-jobName: Sales Gen AI Inverstment
+jobName: Sales Gen AI Investment
 jobType: Source Aligned Data Product
 developerId: fb302eb3-31f0-4180-8dcd-ff6b2305ad54
 domain: sale
-alias: write_to_denorm_sales_test1
+alias: write_to_denorm_sales_test1204
 discoveryPort:
   name: Sales Gen AI Inverstment
 inputPorts:
@@ -22,7 +22,7 @@ inputPorts:
     type: inputParquet
 productState:
   isDynamic: true
-  alias: write_to_denorm_sales_test1
+  alias: write_to_denorm_sales_test1204
   retentionVersions: ""
   logicalSchema:
     properties:
