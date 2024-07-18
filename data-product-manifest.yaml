@@ -4,7 +4,7 @@ jobName: Ayush Draft DP 1204
 jobType: Source Aligned Data Product
 developerId: fb302eb3-31f0-4180-8dcd-ff6b2305ad54
 domain: sale
-alias: Write_to_iceberg_for_Customer_new
+alias: Write_to_iceberg_for_Customer_new_113
 discoveryPort:
   name: Ayush Draft DP 1204
 inputPorts:
