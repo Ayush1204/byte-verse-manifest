@@ -1,14 +1,14 @@
-version: 0.0.1
+version: 0.0.2
 jobId: "997"
-jobName: Ayush Draft DP delete1
+jobName: Ayush Draft DP
 jobType: Source Aligned Data Product
 developerId: fb302eb3-31f0-4180-8dcd-ff6b2305ad54
 domain: sale
 alias: Write_to_iceberg_for_Customer_new
 discoveryPort:
-  name: Ayush Draft DP delete1
+  name: Ayush Draft DP
 inputPorts:
-  - alias: Customer_Delete_11
+  - alias: Customer_Delete_1
     isDynamic: true
     path: s3://dataverse-sale/datasets/CustomerMaster.csv
     optional:
