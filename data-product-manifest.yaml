@@ -1,100 +1,182 @@
-version: 0.0.2
-jobId: "763"
-jobName: ADP_QA_Test
-jobType: Aggregated Data Product
-domain: qa_test
-alias: kjnas
+version: 0.0.1
+jobId: "1025"
+jobName: ayush_sample_Dp
+jobType: Source Aligned Data Product
+developerId: fb302eb3-31f0-4180-8dcd-ff6b2305ad54
+domain: sale
+alias: loadiceberabtable
 discoveryPort:
-  name: ADP_QA_Test
+  name: ayush_sample_Dp
 inputPorts:
-  - alias: SADPQA_Test_1
+  - alias: Weather_Data_1
     isDynamic: true
-    dataProductUrn: urn:dv:dataproduct:a9963d9e-4fbf-49e1-8d3b-58aa54de309a
-    filter: ""
-    projection: ""
+    path: s3://byte-etl-externaldemo/weather_data/2024*.csv
     optional:
       persistDataFrame: false
-    type: dataproduct
-  - alias: SADPRhino_1
+      advanceOptions:
+        delimiter: ","
+      enableDataReconciliation: false
+      enforceSchema: false
+      connection: Base S3 Connectivity
+      dataSetUrn: urn:dv:dataset:3420b778-058c-4158-9c1f-f141913edd2a
+    type: inputDelimited
+  - alias: GCP_dabur_1
     isDynamic: true
-    dataProductUrn: urn:dv:dataproduct:e247f4f2-3879-4c2a-bbb1-51c5244dee9a
-    filter: ""
-    projection: ""
+    path: gs://dabur_poc_inutdata/weather_data/20240118095755.csv
     optional:
       persistDataFrame: false
-    type: dataproduct
+      advanceOptions:
+        delimiter: ","
+      enableDataReconciliation: false
+      enforceSchema: false
+      connection: GCP_Ayush
+      dataSetUrn: urn:dv:dataset:f3ad834c-377d-4c41-9840-d1da484b01d1
+    type: inputDelimited
 productState:
   isDynamic: true
-  alias: kjnas
+  alias: loadiceberabtable
   retentionVersions: ""
   logicalSchema:
     properties:
-      City:
+      REGION:
         type: STRING
         description: ""
-      Region:
+      ZSMCODE:
         type: STRING
         description: ""
-      Country:
+      rowID:
         type: STRING
         description: ""
-      Latitude:
+      formatting:
         type: STRING
         description: ""
-      Longitude:
+      createdDate:
         type: STRING
         description: ""
-      Timezone:
+      createdIP:
         type: STRING
         description: ""
-      Local Time:
+      modifiedIP:
         type: STRING
         description: ""
-      Cloud ID:
+      DATE:
+        type: STRING
+        description: Date of record
+      HOUR:
+        type: STRING
+        description: Hour of record
+      ORDER_ID:
+        type: STRING
+        description: ID of the order
+      ORDER_NO:
+        type: STRING
+        description: Alphanumeric Order number
+      CUSTOMER_ID:
+        type: STRING
+        description: Customer ID
+      ADDRESS_TYPE:
+        type: STRING
+        description: Type of address
+      ORDER_TYPE:
+        type: STRING
+        description: Type of order
+        isPII: true
+      PAYMENT_MODE:
+        type: STRING
+        description: Mode of payment
+      ORDER_MODE:
+        type: STRING
+        description: Mode of order
+      ORDERED_ITEMS:
+        type: STRING
+        description: Distinct list of ordered items
+      COST:
+        type: STRING
+        description: Cost of the item
+      ITEMS_QUANTITY:
+        type: STRING
+        description: Quantity of items
+      ITEM_TYPE:
+        type: STRING
+        description: Type of item
+      PROMO_CODE:
+        type: STRING
+        description: Promo code used if any
+      DELIVERY_RATING:
+        type: STRING
+        description: Delivery rating
+      STORE:
+        type: STRING
+        description: Store location
+      CITY:
+        type: STRING
+        description: City of the store
+      STATE:
+        type: STRING
+        description: State of the store
+      ADJ_STORE:
+        type: STRING
+        description: Adjacent store name
+      ADJ_STORE_CNT:
+        type: STRING
+        description: Adjacent store count
+      ADJ_STORES:
+        type: STRING
+        description: Count of adjacent stores
+      NUMBER_OF_MEALS:
+        type: STRING
+        description: Number of meals in order
+      NUMBER_OF_LIQUIDS:
+        type: STRING
+        description: Number of liquid items in order
+      NUMBER_OF_SOLIDS:
+        type: STRING
+        description: Number of solid items in the order
+      FAMILY_SIZE:
+        type: STRING
+        description: Family size of order
+      CUSTOMER_TYPE:
+        type: STRING
+        description: Type of customer
+      WEEKDAY:
+        type: STRING
+        description: Weekday flag
+      CSAT:
         type: STRING
         description: ""
-      Feels like Celcius:
+      LDO:
         type: STRING
         description: ""
-      Feels like fahrenheit:
+      FAMILY_SIZE_GROUP:
         type: STRING
         description: ""
-      Gust speed in kph:
-        type: STRING
-        description: ""
-      Gust speed in mph:
-        type: STRING
-        description: ""
-      Humidity:
-        type: STRING
-        description: ""
-      Is day time?:
+      ITEMS_QUANTITY_GROUP:
         type: STRING
         description: ""
   stateStoreType: loadDataIceberg
   isProfilingEnabled: false
   updateStrategy: Overwrite
-  tableName: s3source.templetable
-  warehousePath: s3://bp-spark-sql-library-test-acc/
+  tableName: s3source.mytablename
+  warehousePath: https://s3:/warehouse/path
   catalogName: glue
   optional:
     persistDataFrame: false
     enableDataReconciliation: false
-    enforceSchema: false
+    enforceSchema: true
     enforceSchemaMethod: Warning
     catalogType: glue
   refreshInterval: None
 transformation:
   - isDynamic: true
     alias: Spark_SQL_1
-    description: selectallstep
+    description: loaddatttopyspark
     sequence: 3
     inputDataFrameList:
-      - inputDataFrame: SADPQA_Test_1
-        tempViewName: sadpqa12
-      - inputDataFrame: SADPRhino_1
-        tempViewName: sadprhino123
-    query: select * from sadpqa12
+      - inputDataFrame: Weather_Data_1
+        tempViewName: mytablename
+      - inputDataFrame: GCP_dabur_1
+        tempViewName: mytablename1
+    query: Select * from mytablename
     optional:
       persistDataFrame: false
     type: operationThroughSqlQuery
