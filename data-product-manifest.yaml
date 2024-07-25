@@ -1,4 +1,4 @@
-version: 0.0.3
+version: 0.0.5
 jobId: "1027"
 jobName: NameChangeDP Ayush
 jobType: Source Aligned Data Product
@@ -8,17 +8,17 @@ alias: write_to_denorm_sales_test_nc1
 discoveryPort:
   name: NameChangeDP Ayush
 inputPorts:
-  - alias: Secondary_Sales_1
+  - alias: On_Prim_dataset_1
     isDynamic: true
-    path: s3://bp-spark-sql-library-test-acc/secondary_sales_parquet/
+    path: /data/load_write_modes/sample2.parquet
     optional:
       persistDataFrame: false
       advanceOptions:
         mergeSchema: true
       enableDataReconciliation: false
       enforceSchema: false
-      connection: Base S3 Connectivity
-      dataSetUrn: urn:dv:dataset:5a075ca4-46b2-4988-ba1b-16c0cdf30f4f
+      connection: S3 Ayush Connection
+      dataSetUrn: urn:dv:dataset:79df852a-ee50-4302-9982-4ef09a978fe0
     type: inputParquet
 productState:
   isDynamic: true
@@ -267,8 +267,8 @@ transformation:
     description: transform data source spark nc1
     sequence: 2
     inputDataFrameList:
-      - inputDataFrame: Secondary_Sales_1
-        tempViewName: sales_new_update_nc1
+      - inputDataFrame: On_Prim_dataset_1
+        tempViewName: ""
     query: SELECT *,cast(SFAORDATE AS date) as SFAORDATE2,cast(SFALAT AS double) as
       SFALAT2,cast(SFALNG AS float) as SFALNG2,cast(ProductId AS long) as
       ProductId_new FROM sales_new_update_nc1 LIMIT 1000;
