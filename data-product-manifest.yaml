@@ -1,4 +1,4 @@
-version: 0.0.6
+version: 0.0.7
 jobId: "1027"
 jobName: NameChangeDP Ayush
 jobType: Source Aligned Data Product
@@ -269,9 +269,7 @@ transformation:
     inputDataFrameList:
       - inputDataFrame: On_Prim_dataset_1
         tempViewName: sales_new_update_nc1
-    query: SELECT *,cast(SFAORDATE AS date) as SFAORDATE2,cast(SFALAT AS double) as
-      SFALAT2,cast(SFALNG AS float) as SFALNG2,cast(ProductId AS long) as
-      ProductId_new FROM sales_new_update_nc1 LIMIT 1000;
+    query: SELECT * from sales_new_update_nc1
     optional:
       persistDataFrame: false
     type: operationThroughSqlQuery
