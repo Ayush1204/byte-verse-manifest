@@ -1,4 +1,4 @@
-version: 0.0.2
+version: 0.0.3
 jobId: "1027"
 jobName: NameChangeDP Ayush
 jobType: Source Aligned Data Product
@@ -251,15 +251,15 @@ productState:
   stateStoreType: loadDataIceberg
   isProfilingEnabled: false
   updateStrategy: Overwrite
-  tableName: s3source.ayush_sales_gen_test_nc1
-  warehousePath: s3://bp-spark-sql-library-test-acc/
-  catalogName: glue
+  tableName: iceberg_meta.ayush_sales_gen_test_nc1
+  warehousePath: /data/tmp/iceberg_warehouse/
+  catalogName: random_catalog
   optional:
     persistDataFrame: false
     enableDataReconciliation: false
     enforceSchema: false
     enforceSchemaMethod: Warning
-    catalogType: glue
+    catalogType: postgres
   refreshInterval: None
 transformation:
   - isDynamic: true
