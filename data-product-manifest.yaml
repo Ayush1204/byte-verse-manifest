@@ -1,9 +1,9 @@
-version: 0.0.1
+version: 0.0.2
 jobId: "1027"
 jobName: NameChangeDP Ayush
 jobType: Source Aligned Data Product
 developerId: fb302eb3-31f0-4180-8dcd-ff6b2305ad54
-domain: finance
+domain: supply_chain
 alias: write_to_denorm_sales_test_nc1
 discoveryPort:
   name: NameChangeDP Ayush
