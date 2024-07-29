@@ -1,0 +1,122 @@
+version: 0.0.1
+jobId: "1030"
+jobName: Ayush ADP
+jobType: Aggregated Data Product
+developerId: fb302eb3-31f0-4180-8dcd-ff6b2305ad54
+domain: sale
+alias: loadicebergforayush
+discoveryPort:
+  name: Ayush ADP
+inputPorts:
+  - alias: Customer_Details_1
+    isDynamic: true
+    dataProductUrn: urn:dv:dataproduct:29833507-5963-4a99-9766-da2b98304796
+    filter: ""
+    projection: ""
+    optional:
+      persistDataFrame: false
+    type: dataproduct
+productState:
+  isDynamic: true
+  alias: loadicebergforayush
+  retentionVersions: ""
+  logicalSchema:
+    properties:
+      Customer_ID:
+        type: STRING
+        description: ""
+      First_Name:
+        type: STRING
+        description: ""
+        isPII: true
+      Middle_Name:
+        type: STRING
+        description: ""
+        isPII: true
+      Last_Name:
+        type: STRING
+        description: ""
+        isPII: true
+      Date_of_Birth:
+        type: STRING
+        description: ""
+        isPII: true
+      Age:
+        type: STRING
+        description: ""
+      Gender:
+        type: STRING
+        description: ""
+      Email:
+        type: STRING
+        description: ""
+        isPII: true
+      Phone_Number:
+        type: STRING
+        description: ""
+        isPII: true
+      Loyalty_Id:
+        type: STRING
+        description: ""
+      State:
+        type: STRING
+        description: ""
+      Country:
+        type: STRING
+        description: ""
+      Zipcode:
+        type: STRING
+        description: ""
+      Household_Income:
+        type: STRING
+        description: ""
+        isPII: true
+      Consent_Flag:
+        type: STRING
+        description: ""
+      Employee_Flag:
+        type: STRING
+        description: ""
+      Relationship_SPOC_ID:
+        type: STRING
+        description: ""
+      Relationship_SPOC_Store_ID:
+        type: STRING
+        description: ""
+      Loyalty_Flag:
+        type: STRING
+        description: ""
+      City:
+        type: STRING
+        description: ""
+      Card_Id:
+        type: STRING
+        description: ""
+        isPII: true
+  stateStoreType: loadDataIceberg
+  isProfilingEnabled: false
+  updateStrategy: Overwrite
+  tableName: s3Source.ayush_adp_new_dp1
+  warehousePath: s3://bp-spark-sql-library-test-acc/
+  catalogName: glue
+  optional:
+    persistDataFrame: false
+    enableDataReconciliation: false
+    enforceSchema: false
+    enforceSchemaMethod: Warning
+    catalogType: glue
+  refreshInterval: None
+transformation:
+  - isDynamic: true
+    alias: Spark_SQL_1
+    description: pysparkayushadp
+    sequence: 2
+    inputDataFrameList:
+      - inputDataFrame: Customer_Details_1
+        tempViewName: ayush_adp_new_dp
+    query: select * from ayush_adp_new_dp
+    optional:
+      persistDataFrame: false
+    type: operationThroughSqlQuery
+controlPort:
+  dataQualityRules: {}
