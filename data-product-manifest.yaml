@@ -1,10 +1,10 @@
-version: 0.0.1
+version: 0.0.2
 jobId: "1047"
 jobName: AyushNewSCDP
 jobType: Source Aligned Data Product
 developerId: fb302eb3-31f0-4180-8dcd-ff6b2305ad54
 domain: supply_chain
-alias: ""
+alias: newloadscdp
 discoveryPort:
   name: AyushNewSCDP
 inputPorts:
@@ -22,14 +22,19 @@ inputPorts:
     type: inputParquet
 productState:
   isDynamic: true
-  alias: ""
+  alias: newloadscdp
   retentionVersions: ""
-  logicalSchema: ""
+  logicalSchema:
+    properties:
+      S:
+        type: STRING
+        description: ""
   stateStoreType: loadDataIceberg
   isProfilingEnabled: false
-  tableName: ""
-  warehousePath: ""
-  catalogName: ""
+  updateStrategy: Overwrite
+  tableName: s3source.ayusnewscdp
+  warehousePath: s3://bp-spark-sql-library-test-acc/
+  catalogName: gue
   optional:
     persistDataFrame: false
     enableDataReconciliation: false
@@ -40,12 +45,12 @@ productState:
 transformation:
   - isDynamic: true
     alias: Spark_SQL_1
-    description: ""
+    description: newscdp
     sequence: 2
     inputDataFrameList:
       - inputDataFrame: On_Prim_dataset_1
-        tempViewName: ""
-    query: ""
+        tempViewName: ayusnewscdp
+    query: select * from ayusnewscdp
     optional:
       persistDataFrame: false
     type: operationThroughSqlQuery
