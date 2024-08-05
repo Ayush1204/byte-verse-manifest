@@ -1,4 +1,4 @@
-version: 0.0.2
+version: 0.0.3
 jobId: "1047"
 jobName: AyushNewSCDP
 jobType: Source Aligned Data Product
@@ -33,14 +33,14 @@ productState:
   isProfilingEnabled: false
   updateStrategy: Overwrite
   tableName: s3source.ayusnewscdp
-  warehousePath: s3://bp-spark-sql-library-test-acc/
-  catalogName: gue
+  warehousePath: /data/tmp/iceberg_warehouse/
+  catalogName: random_catalog
   optional:
     persistDataFrame: false
     enableDataReconciliation: false
     enforceSchema: true
     enforceSchemaMethod: Warning
-    catalogType: glue
+    catalogType: postgres
   refreshInterval: None
 transformation:
   - isDynamic: true
