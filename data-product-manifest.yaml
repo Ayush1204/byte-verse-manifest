@@ -1,4 +1,4 @@
-version: 0.0.3
+version: 0.0.4
 jobId: "1047"
 jobName: AyushNewSCDP
 jobType: Source Aligned Data Product
@@ -32,7 +32,7 @@ productState:
   stateStoreType: loadDataIceberg
   isProfilingEnabled: false
   updateStrategy: Overwrite
-  tableName: s3source.ayusnewscdp
+  tableName: icerberg_meta.ayusnewscdp
   warehousePath: /data/tmp/iceberg_warehouse/
   catalogName: random_catalog
   optional:
