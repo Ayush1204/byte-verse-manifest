@@ -1,4 +1,4 @@
-version: 0.0.20
+version: 0.0.15
 jobId: "931"
 jobName: Sales_Update_DP_Test
 jobType: Source Aligned Data Product
@@ -236,7 +236,7 @@ productState:
   stateStoreType: loadDataIceberg
   isProfilingEnabled: false
   updateStrategy: Overwrite
-  tableName: s3source.dummy_sales_test_update
+  tableName: s3source.sales_updated_new_12
   warehousePath: s3://bp-spark-sql-library-test-acc/
   catalogName: glue
   optional:
@@ -253,7 +253,7 @@ transformation:
     sequence: 2
     inputDataFrameList:
       - inputDataFrame: Secondary_Sales_1
-        tempViewName: dummy_sales_test_update
+        tempViewName: sales_updated_new_12
     query: Select * from sales_updated_new_12
     optional:
       persistDataFrame: false
