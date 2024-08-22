@@ -1,4 +1,4 @@
-version: 0.0.8
+version: 0.0.9
 jobId: "1036"
 jobName: SupplyChain_ayush
 jobType: Source Aligned Data Product
@@ -270,7 +270,7 @@ transformation:
       - inputDataFrame: On_Prim_dataset_1
         tempViewName: sales_new_update_sc1
     query: Select *, cast (item_number As integer) as itme_number2,cast (item_number
-      As integer) as item_number2 from sales_new_update_sc1;
+      As integer) as item_number from sales_new_update_sc1;
     optional:
       persistDataFrame: false
     type: operationThroughSqlQuery
