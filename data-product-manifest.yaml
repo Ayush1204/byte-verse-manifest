@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 0.0.2
 jobId: "1030"
 jobName: Ayush ADP
 jobType: Aggregated Data Product
@@ -105,7 +105,7 @@ productState:
     enforceSchema: false
     enforceSchemaMethod: Warning
     catalogType: glue
-  refreshInterval: None
+  refreshInterval: 30 2 * * *
 transformation:
   - isDynamic: true
     alias: Spark_SQL_1
