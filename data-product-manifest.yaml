@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 0.0.2
 jobId: "1069"
 jobName: Ayush_New_SADP_Test
 jobType: Source Aligned Data Product
@@ -47,9 +47,6 @@ productState:
       modifiedIP:
         type: STRING
         description: ""
-      DATE:
-        type: STRING
-        description: Date of record
       HOUR:
         type: STRING
         description: Hour of record
