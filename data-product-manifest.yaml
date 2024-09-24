@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 0.0.2
 jobId: "1086"
 jobName: SupplyChain_QA
 jobType: Source Aligned Data Product
@@ -251,7 +251,7 @@ productState:
   stateStoreType: loadDataIceberg
   isProfilingEnabled: false
   updateStrategy: Overwrite
-  tableName: iceberg_meta.ayush_sales_gen_test_qa
+  tableName: iceberg_meta.ayush_sales_gen_test_qa_ab
   warehousePath: /data/tmp/iceberg_warehouse/
   catalogName: random_catalog
   optional:
@@ -268,9 +268,9 @@ transformation:
     sequence: 2
     inputDataFrameList:
       - inputDataFrame: On_Prim_dataset_1
-        tempViewName: sales_new_update_qa
-    query: Select *, cast (item_number As integer) as itme_number2,cast (item_number
-      As integer) as item_number from sales_new_update_qa;
+        tempViewName: ayush_sales_gen_test_qa_ab
+    query: Select *, cast (item_number As integer) as item_number2,cast (item_number
+      As integer) as item_number from ayush_sales_gen_test_qa_ab;
     optional:
       persistDataFrame: false
     type: operationThroughSqlQuery
