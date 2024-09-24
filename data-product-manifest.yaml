@@ -1,0 +1,58 @@
+version: 0.0.2
+jobId: "1087"
+jobName: AyushNewSCDP_QA
+jobType: Source Aligned Data Product
+developerId: fb302eb3-31f0-4180-8dcd-ff6b2305ad54
+domain: supply_chain
+alias: newloadscdp1
+discoveryPort:
+  name: AyushNewSCDP_QA
+inputPorts:
+  - alias: On_Prim_dataset_1
+    isDynamic: true
+    path: /data/load_write_modes/sample2.parquet
+    optional:
+      persistDataFrame: false
+      advanceOptions:
+        mergeSchema: true
+      enableDataReconciliation: false
+      enforceSchema: false
+      connection: S3 Ayush Connection
+      dataSetUrn: urn:dv:dataset:79df852a-ee50-4302-9982-4ef09a978fe0
+    type: inputParquet
+productState:
+  isDynamic: true
+  alias: newloadscdp1
+  retentionVersions: ""
+  logicalSchema:
+    properties:
+      S:
+        type: STRING
+        description: ""
+  stateStoreType: loadDataIceberg
+  isProfilingEnabled: false
+  updateStrategy: Overwrite
+  tableName: iceberg_meta.ayusnewscdp
+  warehousePath: /data/tmp/iceberg_warehouse/
+  catalogName: random_catalog
+  optional:
+    persistDataFrame: false
+    enableDataReconciliation: false
+    enforceSchema: true
+    enforceSchemaMethod: Warning
+    catalogType: postgres
+  refreshInterval: None
+transformation:
+  - isDynamic: true
+    alias: Spark_SQL_1
+    description: newscdp1
+    sequence: 2
+    inputDataFrameList:
+      - inputDataFrame: On_Prim_dataset_1
+        tempViewName: ayusnewscdp1
+    query: select * from ayusnewscdp1
+    optional:
+      persistDataFrame: false
+    type: operationThroughSqlQuery
+controlPort:
+  dataQualityRules: {}
