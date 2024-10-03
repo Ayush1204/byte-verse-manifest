@@ -1,4 +1,4 @@
-version: 0.0.8
+version: 0.0.10
 jobId: "1049"
 jobName: ice_DP
 jobType: Source Aligned Data Product
@@ -29,9 +29,12 @@ productState:
       s:
         type: STRING
         description: ""
+      P:
+        type: STRING
+        description: ""
   stateStoreType: loadDataIceberg
   isProfilingEnabled: false
-  updateStrategy: Overwrite
+  updateStrategy: Append
   tableName: iceberg_meta.ayush_sales_gen_test_sc2
   warehousePath: /data/tmp/iceberg_warehouse/
   catalogName: random_catalog
@@ -41,7 +44,7 @@ productState:
     enforceSchema: true
     enforceSchemaMethod: Warning
     catalogType: postgres
-  refreshInterval: 5 2 * * *
+  refreshInterval: 5 3 * * *
 transformation:
   - isDynamic: true
     alias: Spark_SQL_1
