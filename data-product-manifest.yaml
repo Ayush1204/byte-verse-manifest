@@ -1,0 +1,58 @@
+version: 0.0.1
+jobId: "1106"
+jobName: DP Delete Test
+jobType: Source Aligned Data Product
+developerId: fb302eb3-31f0-4180-8dcd-ff6b2305ad54
+domain: sale
+alias: loadicebergfilterbugdel
+discoveryPort:
+  name: DP Delete Test
+inputPorts:
+  - alias: Ayush_New_DS_1
+    isDynamic: true
+    path: s3://byte-etl-externaldemo/sample-test/Ayush_CRDP_sample_data.csv
+    optional:
+      persistDataFrame: false
+      advanceOptions:
+        delimiter: ","
+      enableDataReconciliation: false
+      enforceSchema: false
+      connection: Ayush_New
+      dataSetUrn: urn:dv:dataset:fa3dfb93-b4cd-4ef4-bc0c-1ccf34ec26f5
+    type: inputDelimited
+productState:
+  isDynamic: true
+  alias: loadicebergfilterbugdel
+  retentionVersions: ""
+  logicalSchema:
+    properties:
+      S:
+        type: STRING
+        description: ""
+  stateStoreType: loadDataIceberg
+  isProfilingEnabled: false
+  updateStrategy: Overwrite
+  tableName: s3source.filtertablebugdel
+  warehousePath: s3://bp-spark-sql-library-test-acc/
+  catalogName: glue
+  optional:
+    persistDataFrame: false
+    enableDataReconciliation: false
+    enforceSchema: true
+    enforceSchemaMethod: Warning
+    catalogType: glue
+  refreshInterval: None
+transformation:
+  - isDynamic: true
+    alias: Spark_SQL_1
+    description: tableayushsparkbugdel
+    sequence: 2
+    inputDataFrameList:
+      - inputDataFrame: Ayush_New_DS_1
+        tempViewName: filtertablebugdel
+    query: select * from filtertablebugdel
+    optional:
+      persistDataFrame: false
+    type: operationThroughSqlQuery
+controlPort:
+  dataQualityRules: {}
