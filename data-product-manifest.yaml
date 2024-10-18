@@ -1,4 +1,4 @@
-version: 0.0.2
+version: 0.0.3
 jobId: "1109"
 jobName: Sales ADP
 jobType: Aggregated Data Product
@@ -8,6 +8,14 @@ alias: write_to_sales_adp
 discoveryPort:
   name: Sales ADP
 inputPorts:
+  - alias: SADP_lineage_test_1
+    isDynamic: true
+    dataProductUrn: urn:dv:dataproduct:195a38e4-f705-4cbe-863a-c2ab5daa66a9
+    filter: ""
+    projection: ""
+    optional:
+      persistDataFrame: false
+    type: dataproduct
   - alias: Ayush_ADP_version_3_1
     isDynamic: true
     dataProductUrn: urn:dv:dataproduct:037dadd9-6b3a-4b52-a4aa-5033312419cd
@@ -16,9 +24,9 @@ inputPorts:
     optional:
       persistDataFrame: false
     type: dataproduct
-  - alias: SADP_lineage_test_1
+  - alias: Weather_Forecasting_For_City_1
     isDynamic: true
-    dataProductUrn: urn:dv:dataproduct:195a38e4-f705-4cbe-863a-c2ab5daa66a9
+    dataProductUrn: urn:dv:dataproduct:68a5d66a-2091-4dbc-805f-4a08b5b80574
     filter: ""
     projection: ""
     optional:
@@ -272,12 +280,14 @@ transformation:
   - isDynamic: true
     alias: Spark_SQL_1
     description: transformadp
-    sequence: 3
+    sequence: 4
     inputDataFrameList:
       - inputDataFrame: Ayush_ADP_version_3_1
         tempViewName: adpsaleslineage
       - inputDataFrame: SADP_lineage_test_1
         tempViewName: sadpsaleslineage1
+      - inputDataFrame: Weather_Forecasting_For_City_1
+        tempViewName: sadpsaleslineage2
     query: select * from adpsaleslineage
     optional:
       persistDataFrame: false
