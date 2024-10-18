@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 0.0.2
 jobId: "1111"
 jobName: SADP lineage test
 jobType: Source Aligned Data Product
@@ -16,18 +16,18 @@ inputPorts:
     optional:
       persistDataFrame: false
     type: dataproduct
-  - alias: On_Prim_dataset_1
+  - alias: Customer_Master_1
     isDynamic: true
-    path: /data/load_write_modes/sample2.parquet
+    path: s3://dataverse-sale/datasets/##file_name##
     optional:
       persistDataFrame: false
       advanceOptions:
-        mergeSchema: true
+        delimiter: ","
       enableDataReconciliation: false
       enforceSchema: false
-      connection: S3 Ayush Connection
-      dataSetUrn: urn:dv:dataset:79df852a-ee50-4302-9982-4ef09a978fe0
-    type: inputParquet
+      connection: s3 with Role miloni
+      dataSetUrn: urn:dv:dataset:640eff57-8c6d-4579-9f5a-b1caac6981f3
+    type: inputDelimited
 productState:
   isDynamic: true
   alias: load_lineage_test
@@ -58,8 +58,8 @@ transformation:
     inputDataFrameList:
       - inputDataFrame: AllSalesData_1
         tempViewName: lineagetable
-      - inputDataFrame: On_Prim_dataset_1
-        tempViewName: lineagetable1
+      - inputDataFrame: Customer_Master_1
+        tempViewName: lineagetable2
     query: select * from lineagetable
     optional:
       persistDataFrame: false
