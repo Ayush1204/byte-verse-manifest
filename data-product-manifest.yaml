@@ -1,0 +1,286 @@
+version: 0.0.1
+jobId: "1109"
+jobName: Sales ADP
+jobType: Aggregated Data Product
+developerId: fb302eb3-31f0-4180-8dcd-ff6b2305ad54
+domain: sale
+alias: write_to_sales_adp
+discoveryPort:
+  name: Sales ADP
+inputPorts:
+  - alias: Customer_Detail_1
+    isDynamic: true
+    dataProductUrn: urn:dv:dataproduct:29833507-5963-4a99-9766-da2b98304796
+    filter: ""
+    projection: ""
+    optional:
+      persistDataFrame: false
+    type: dataproduct
+  - alias: Secondary_Sales_Details_1
+    isDynamic: true
+    dataProductUrn: urn:dv:dataproduct:956fbff3-8b5e-48fe-a11c-147c4c5788e7
+    filter: ""
+    projection: ""
+    optional:
+      persistDataFrame: false
+    type: dataproduct
+productState:
+  isDynamic: true
+  alias: write_to_sales_adp
+  retentionVersions: ""
+  logicalSchema:
+    properties:
+      region:
+        type: STRING
+        description: ""
+      zsmcode:
+        type: STRING
+        description: ""
+      zsmname:
+        type: STRING
+        description: ""
+      ahcode:
+        type: STRING
+        description: ""
+      ahname:
+        type: STRING
+        description: ""
+      asmcode:
+        type: STRING
+        description: ""
+      asmname:
+        type: STRING
+        description: ""
+      socode:
+        type: STRING
+        description: ""
+      soname:
+        type: STRING
+        description: ""
+      statename:
+        type: STRING
+        description: ""
+      town:
+        type: STRING
+        description: ""
+      stockistcode:
+        type: STRING
+        description: ""
+      stockistname:
+        type: STRING
+        description: ""
+      stockisttype:
+        type: STRING
+        description: ""
+      ssmcode:
+        type: STRING
+        description: ""
+      ssmname:
+        type: STRING
+        description: ""
+      ssmclass:
+        type: STRING
+        description: ""
+      ssmsubclass:
+        type: STRING
+        description: ""
+      ssmcompcode:
+        type: STRING
+        description: ""
+      ssmstatus:
+        type: STRING
+        description: ""
+      retailerid:
+        type: STRING
+        description: ""
+      retailercode:
+        type: STRING
+        description: ""
+      retailername:
+        type: STRING
+        description: ""
+      nature_of_business:
+        type: STRING
+        description: ""
+      type_of_outlet:
+        type: STRING
+        description: ""
+      outlet_class:
+        type: STRING
+        description: ""
+      rtrcmpcode:
+        type: STRING
+        description: ""
+      reachcode:
+        type: STRING
+        description: ""
+      giscode:
+        type: STRING
+        description: ""
+      gsttinnumber:
+        type: STRING
+        description: ""
+      year:
+        type: STRING
+        description: ""
+      month:
+        type: STRING
+        description: ""
+      billno:
+        type: STRING
+        description: ""
+      billdate:
+        type: DATETIME
+        description: ""
+      bgcode:
+        type: STRING
+        description: ""
+      bgname:
+        type: STRING
+        description: ""
+      categoryid:
+        type: STRING
+        description: ""
+      categorycode:
+        type: STRING
+        description: ""
+      category:
+        type: STRING
+        description: ""
+      asbrandid:
+        type: STRING
+        description: ""
+      brandcode:
+        type: STRING
+        description: ""
+      brand:
+        type: STRING
+        description: ""
+      variantid:
+        type: STRING
+        description: ""
+      variantcode:
+        type: STRING
+        description: ""
+      variant:
+        type: STRING
+        description: ""
+      skuid:
+        type: STRING
+        description: ""
+      skucode:
+        type: STRING
+        description: ""
+      sku:
+        type: STRING
+        description: ""
+      productid:
+        type: STRING
+        description: ""
+      productcode:
+        type: STRING
+        description: ""
+      productname:
+        type: STRING
+        description: ""
+      batchno:
+        type: STRING
+        description: ""
+      productupc:
+        type: STRING
+        description: ""
+      drishtiorderno:
+        type: STRING
+        description: ""
+      pono:
+        type: STRING
+        description: ""
+      podate:
+        type: DATETIME
+        description: ""
+      sfaorderno:
+        type: STRING
+        description: ""
+      sfaordate:
+        type: DATETIME
+        description: ""
+      sfalat:
+        type: STRING
+        description: ""
+      sfalng:
+        type: STRING
+        description: ""
+      starttime:
+        type: STRING
+        description: ""
+      endtime:
+        type: STRING
+        description: ""
+      pcs:
+        type: STRING
+        description: ""
+      cases:
+        type: STRING
+        description: ""
+      value_ptr:
+        type: STRING
+        description: ""
+      salesvalue:
+        type: STRING
+        description: ""
+      value_pts:
+        type: STRING
+        description: ""
+      newproduct:
+        type: STRING
+        description: ""
+      test:
+        type: STRING
+        description: ""
+      state:
+        type: STRING
+        description: ""
+      district:
+        type: STRING
+        description: ""
+      focusbrand:
+        type: STRING
+        description: ""
+      design:
+        type: STRING
+        description: ""
+      bucode:
+        type: STRING
+        description: ""
+      buname:
+        type: STRING
+        description: ""
+  stateStoreType: loadDataIceberg
+  isProfilingEnabled: false
+  updateStrategy: Overwrite
+  tableName: s3source.adp_sales
+  warehousePath: s3://bp-spark-sql-library-test-acc/
+  catalogName: glue
+  optional:
+    persistDataFrame: false
+    enableDataReconciliation: false
+    enforceSchema: true
+    enforceSchemaMethod: Warning
+    catalogType: glue
+  refreshInterval: None
+transformation:
+  - isDynamic: true
+    alias: Spark_SQL_1
+    description: transformadp
+    sequence: 3
+    inputDataFrameList:
+      - inputDataFrame: Customer_Detail_1
+        tempViewName: adp_sales
+      - inputDataFrame: Secondary_Sales_Details_1
+        tempViewName: adp_sales1
+    query: select * from adp_sales
+    optional:
+      persistDataFrame: false
+    type: operationThroughSqlQuery
+controlPort:
+  dataQualityRules: {}
