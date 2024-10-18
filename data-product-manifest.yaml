@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 0.0.2
 jobId: "1109"
 jobName: Sales ADP
 jobType: Aggregated Data Product
@@ -8,17 +8,17 @@ alias: write_to_sales_adp
 discoveryPort:
   name: Sales ADP
 inputPorts:
-  - alias: Customer_Detail_1
+  - alias: Ayush_ADP_version_3_1
     isDynamic: true
-    dataProductUrn: urn:dv:dataproduct:29833507-5963-4a99-9766-da2b98304796
+    dataProductUrn: urn:dv:dataproduct:037dadd9-6b3a-4b52-a4aa-5033312419cd
     filter: ""
     projection: ""
     optional:
       persistDataFrame: false
     type: dataproduct
-  - alias: Secondary_Sales_Details_1
+  - alias: SADP_lineage_test_1
     isDynamic: true
-    dataProductUrn: urn:dv:dataproduct:956fbff3-8b5e-48fe-a11c-147c4c5788e7
+    dataProductUrn: urn:dv:dataproduct:195a38e4-f705-4cbe-863a-c2ab5daa66a9
     filter: ""
     projection: ""
     optional:
@@ -258,7 +258,7 @@ productState:
   stateStoreType: loadDataIceberg
   isProfilingEnabled: false
   updateStrategy: Overwrite
-  tableName: s3source.adp_sales
+  tableName: s3source.adpsaleslineage
   warehousePath: s3://bp-spark-sql-library-test-acc/
   catalogName: glue
   optional:
@@ -274,11 +274,11 @@ transformation:
     description: transformadp
     sequence: 3
     inputDataFrameList:
-      - inputDataFrame: Customer_Detail_1
-        tempViewName: adp_sales
-      - inputDataFrame: Secondary_Sales_Details_1
-        tempViewName: adp_sales1
-    query: select * from adp_sales
+      - inputDataFrame: Ayush_ADP_version_3_1
+        tempViewName: adpsaleslineage
+      - inputDataFrame: SADP_lineage_test_1
+        tempViewName: sadpsaleslineage1
+    query: select * from adpsaleslineage
     optional:
       persistDataFrame: false
     type: operationThroughSqlQuery
