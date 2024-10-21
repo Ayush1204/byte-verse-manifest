@@ -1,12 +1,12 @@
-version: 0.0.2
+version: 0.0.3
 jobId: "1113"
-jobName: AyushNewSCDP copy
+jobName: AyushNewSCDPVL
 jobType: Source Aligned Data Product
 developerId: fb302eb3-31f0-4180-8dcd-ff6b2305ad54
 domain: supply_chain
 alias: newloadscdpVL
 discoveryPort:
-  name: AyushNewSCDP copy
+  name: AyushNewSCDPVL
 inputPorts:
   - alias: On_Prim_dataset_1
     isDynamic: true
