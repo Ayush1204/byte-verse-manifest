@@ -119,12 +119,6 @@ productState:
           the customer's relationship.
         sourceColumn: Relationship_SPOC_ID
         sourceTable: customers
-      Relationship_SPOC_Store_ID:
-        type: STRING
-        description: Identifier for the store associated with the single point of
-          contact (SPOC) of the customer's relationship.
-        sourceColumn: Relationship_SPOC_Store_ID
-        sourceTable: customers
       City:
         type: STRING
         description: City of residence of the customer.
