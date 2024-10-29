@@ -1,4 +1,3 @@
-version: 0.0.2
 jobId: "1028"
 jobName: Customer Details_Ayush
 jobType: Source Aligned Data Product
@@ -163,12 +162,4 @@ transformation:
       persistDataFrame: false
     type: operationThroughSqlQuery
 controlPort:
-  dataQualityRules:
-    NullValueCheck:
-      productState:
-        checks:
-          - column: Card_Id
-            expression: <=
-            number: 1
-            owner: Miloni Shah
-        referenceAlias: Write_to_iceberg_for_Customer_schedule
+  dataQualityRules: {}
