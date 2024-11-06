@@ -156,4 +156,12 @@ transformation:
       persistDataFrame: false
     type: operationThroughSqlQuery
 controlPort:
-  dataQualityRules: {}
+  dataQualityRules:
+    NullValueCheck:
+      productState:
+        checks:
+          - column: " Card_Id"
+            expression: <=
+            number: 1
+            owner: Ayush Jain
+        referenceAlias: Write_to_iceberg_for_Customer_schedule
