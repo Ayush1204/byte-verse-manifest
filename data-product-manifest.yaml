@@ -29,36 +29,36 @@ productState:
         type: STRING
         description: Unique identifier for each region.
         sourceColumn: region
-        sourceTable: "-"
+        sourceTable: "secondarysales"
       zsmcode:
         type: STRING
         description: zsmcode
         sourceColumn: zsmcode
-        sourceTable: "-"
+        sourceTable: "secondarysales"
         isPII: true
       zsmname:
         type: STRING
         description: zsmname
         sourceColumn: zsmname
-        sourceTable: "-"
+        sourceTable: "secondarysales"
         isPII: true
       ahcode:
         type: STRING
         description: ahcode.
         sourceColumn: ahcode
-        sourceTable: "-"
+        sourceTable: "secondarysales"
         isPII: true
       ahname:
         type: STRING
         description: ahname.
         sourceColumn: ahname
-        sourceTable: "-"
+        sourceTable: "secondarysales"
         isPII: true
       asmname:
         type: STRING
         description: asmname
         sourceColumn: asmname
-        sourceTable: "-"
+        sourceTable: "secondarysales"
   stateStoreType: loadDataIceberg
   isProfilingEnabled: false
   updateStrategy: Overwrite
