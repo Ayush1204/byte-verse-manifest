@@ -85,4 +85,10 @@ transformation:
       persistDataFrame: false
     type: operationThroughSqlQuery
 controlPort:
-  dataQualityRules:{}
+  dataQualityRules:productState:
+        checks:
+          - column: zsmcode
+            expression: ">="
+            number: 1
+            owner: Ayush
+        referenceAlias: write_to_sales_denorm_marketing1for
