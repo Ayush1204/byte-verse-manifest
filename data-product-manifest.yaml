@@ -1,4 +1,3 @@
-version: 0.0.4
 jobId: "1039"
 jobName: Ayush DP
 jobType: Source Aligned Data Product
@@ -8,17 +7,17 @@ alias: loadicebergfilter
 discoveryPort:
   name: Ayush DP
 inputPorts:
-  - alias: Ayush_New_DS_1
+  - alias: S3_Dataset_Sales_1
     isDynamic: true
-    path: s3://byte-etl-externaldemo/sample-test/Ayush_CRDP_sample_data.csv
+    path: s3://dataverse-sale/datasets/##file_name##
     optional:
       persistDataFrame: false
       advanceOptions:
         delimiter: ","
       enableDataReconciliation: false
       enforceSchema: false
-      connection: Ayush_New
-      dataSetUrn: urn:dv:dataset:fa3dfb93-b4cd-4ef4-bc0c-1ccf34ec26f5
+      connection: S3 Connection
+      dataSetUrn: urn:dv:dataset:05f10c43-7d68-4f85-8038-4dead11f9c94
     type: inputDelimited
 productState:
   isDynamic: true
@@ -26,9 +25,111 @@ productState:
   retentionVersions: ""
   logicalSchema:
     properties:
-      S:
+      region:
         type: STRING
-        description: ""
+        description: Unique identifier for each region.
+        sourceColumn: region
+        sourceTable: "-"
+      zsmcode:
+        type: STRING
+        description: zsmcode
+        sourceColumn: zsmcode
+        sourceTable: customers
+        isPII: true
+      zsmname:
+        type: STRING
+        description: zsmname
+        sourceColumn: zsmname
+        sourceTable: customers
+        isPII: true
+      ahcode:
+        type: STRING
+        description: ahcode.
+        sourceColumn: ahcode
+        sourceTable: customers
+        isPII: true
+      ahname:
+        type: STRING
+        description: ahname.
+        sourceColumn: ahname
+        sourceTable: customers
+        isPII: true
+      asmname:
+        type: STRING
+        description: asmname
+        sourceColumn: asmname
+        sourceTable: customers
+      Gender:
+        type: STRING
+        description: Gender of the customer.
+        sourceColumn: Gender
+        sourceTable: customers
+      Email:
+        type: STRING
+        description: Email address of the customer.
+        sourceColumn: Email
+        sourceTable: customers
+        isPII: true
+      Phone_Number:
+        type: STRING
+        description: Phone number of the customer.
+        sourceColumn: Phone_Number
+        sourceTable: customers
+        isPII: true
+      Loyalty_Id:
+        type: STRING
+        description: Identifier for the loyalty program associated with the customer.
+        sourceColumn: Loyalty_Id
+        sourceTable: customers
+      State:
+        type: STRING
+        description: State of residence of the customer.
+        sourceColumn: State
+        sourceTable: customers
+      Country:
+        type: STRING
+        description: Country of residence of the customer.
+        sourceColumn: Country
+        sourceTable: customers
+      Zipcode:
+        type: STRING
+        description: Zip code of the customer's address.
+        sourceColumn: Zipcode
+        sourceTable: customers
+      Household_Income:
+        type: STRING
+        description: Household income of the customer.
+        sourceColumn: Household_Income
+        sourceTable: customers
+        isPII: true
+      Consent_Flag:
+        type: STRING
+        description: Flag indicating whether the customer has given consent for
+          marketing communication.
+        sourceColumn: Consent_Flag
+        sourceTable: customers
+      Employee_Flag:
+        type: STRING
+        description: Flag indicating whether the customer is an employee.
+        sourceColumn: Employee_Flag
+        sourceTable: customers
+      Relationship_SPOC_ID:
+        type: STRING
+        description: Identifier for the single point of contact (SPOC) associated with
+          the customer's relationship.
+        sourceColumn: Relationship_SPOC_ID
+        sourceTable: customers
+      City:
+        type: STRING
+        description: City of residence of the customer.
+        sourceColumn: City
+        sourceTable: customers
+      Card_Id:
+        type: STRING
+        description: Identifier for the card associated with the customer.
+        sourceColumn: Card_Id
+        sourceTable: customers
+        isPII: true
   stateStoreType: loadDataIceberg
   isProfilingEnabled: false
   updateStrategy: Overwrite
@@ -48,8 +149,8 @@ transformation:
     description: tableayushspark
     sequence: 2
     inputDataFrameList:
-      - inputDataFrame: Ayush_New_DS_1
-        tempViewName: filtertable
+      - inputDataFrame: S3_Dataset_Sales_1
+        tempViewName: ""
     query: select * from filtertable
     optional:
       persistDataFrame: false
