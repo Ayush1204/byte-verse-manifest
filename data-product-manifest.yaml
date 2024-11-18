@@ -150,7 +150,7 @@ transformation:
     sequence: 2
     inputDataFrameList:
       - inputDataFrame: S3_Dataset_Sales_1
-        tempViewName: filtertable
+        tempViewName: filtertable114030
     query: select * from filtertable
     optional:
       persistDataFrame: false
