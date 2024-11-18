@@ -139,7 +139,7 @@ productState:
   optional:
     persistDataFrame: false
     enableDataReconciliation: false
-    enforceSchema: true
+    enforceSchema: false
     enforceSchemaMethod: Warning
     catalogType: glue
   refreshInterval: 8 8 * * *
@@ -150,7 +150,7 @@ transformation:
     sequence: 2
     inputDataFrameList:
       - inputDataFrame: S3_Dataset_Sales_1
-        tempViewName: ""
+        tempViewName: filtertable
     query: select * from filtertable
     optional:
       persistDataFrame: false
