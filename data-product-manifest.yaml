@@ -1,4 +1,4 @@
-version: 0.0.2
+version: 0.0.3
 jobId: "1172"
 jobName: Test DP Flow
 jobType: Source Aligned Data Product
@@ -140,7 +140,7 @@ productState:
   stateStoreType: loadDataIceberg
   isProfilingEnabled: true
   updateStrategy: Overwrite
-  tableName: s3source.customer_details_sadp-flow
+  tableName: s3source.customer_details_sadp_flow
   warehousePath: s3://bp-spark-sql-library-test-acc/
   catalogName: glue
   optional:
