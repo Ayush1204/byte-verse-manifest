@@ -1,63 +1,64 @@
-jobId: "833"
-jobName: AllSalesData
+version: 0.0.1
+jobId: "1173"
+jobName: Test DP Flow copy
 jobType: Source Aligned Data Product
 developerId: fb302eb3-31f0-4180-8dcd-ff6b2305ad54
 domain: sale
-alias: loadtgenaidatatotable
+alias: Write_to_iceberg_for_Customer_flow1
 discoveryPort:
-  name: AllSalesData
+  name: Test DP Flow copy
 inputPorts:
-  - alias: Secondary_Sales_1
+  - alias: Customer_Master_2
     isDynamic: true
-    path: s3://bp-spark-sql-library-test-acc/secondary_sales_parquet/
+    path: s3://dataverse-sale/datasets/##file_name##
     optional:
       persistDataFrame: false
       advanceOptions:
-        mergeSchema: true
+        delimiter: ","
       enableDataReconciliation: false
       enforceSchema: false
-      connection: Base S3 Connectivity
-      dataSetUrn: urn:dv:dataset:5a075ca4-46b2-4988-ba1b-16c0cdf30f4f
-    type: inputParquet
+      connection: s3 with Role miloni
+      dataSetUrn: urn:dv:dataset:640eff57-8c6d-4579-9f5a-b1caac6981f3
+    type: inputDelimited
 productState:
   isDynamic: true
-  alias: loadtgenaidatatotable
+  alias: Write_to_iceberg_for_Customer_flow1
   retentionVersions: ""
   logicalSchema:
     properties:
-      region:
+      Customer_ID:
         type: STRING
-        description: Unique identifier for each region.
-        sourceColumn: region
-        sourceTable: "-"
-      zsmcode:
+        description: Unique identifier for each customer.
+        sourceColumn: Customer_ID
+        sourceTable: customers
+      First_Name:
         type: STRING
-        description: zsmcode
-        sourceColumn: zsmcode
+        description: First name of the customer.
+        sourceColumn: First_Name
         sourceTable: customers
         isPII: true
-      zsmname:
+      Middle_Name:
         type: STRING
-        description: zsmname
-        sourceColumn: zsmname
+        description: Middle name of the customer.
+        sourceColumn: Middle_Name
         sourceTable: customers
         isPII: true
-      ahcode:
+      Last_Name:
         type: STRING
-        description: ahcode.
-        sourceColumn: ahcode
+        description: Last name of the customer.
+        sourceColumn: Last_Name
         sourceTable: customers
         isPII: true
-      ahname:
+      Date_of_Birth:
         type: STRING
-        description: ahname.
-        sourceColumn: ahname
+        description: Date of birth of the customer.
+        sourceColumn: Date_of_Birth
         sourceTable: customers
         isPII: true
-      asmname:
+      Age:
         type: STRING
-        description: asmname
-        sourceColumn: asmname
+        description: Age of the customer.
+        sourceColumn: Age
         sourceTable: customers
       Gender:
         type: STRING
@@ -119,6 +120,12 @@ productState:
           the customer's relationship.
         sourceColumn: Relationship_SPOC_ID
         sourceTable: customers
+      Relationship_SPOC_Store_ID:
+        type: STRING
+        description: Identifier for the store associated with the single point of
+          contact (SPOC) of the customer's relationship.
+        sourceColumn: Relationship_SPOC_Store_ID
+        sourceTable: customers
       City:
         type: STRING
         description: City of residence of the customer.
@@ -131,9 +138,9 @@ productState:
         sourceTable: customers
         isPII: true
   stateStoreType: loadDataIceberg
-  isProfilingEnabled: false
-  updateStrategy: Append
-  tableName: s3Source.all_sales_data
+  isProfilingEnabled: true
+  updateStrategy: Overwrite
+  tableName: s3source.customer_details_sadp_flow1
   warehousePath: s3://bp-spark-sql-library-test-acc/
   catalogName: glue
   optional:
@@ -142,18 +149,26 @@ productState:
     enforceSchema: false
     enforceSchemaMethod: Warning
     catalogType: glue
-  refreshInterval: None
+  refreshInterval: 0 13 * * *
 transformation:
   - isDynamic: true
     alias: Spark_SQL_1
-    description: loaddatatosparksql
+    description: transformationflow1
     sequence: 2
     inputDataFrameList:
-      - inputDataFrame: Secondary_Sales_1
-        tempViewName: all_sales_data1
-    query: Select * from all_sales_data
+      - inputDataFrame: Customer_Master_2
+        tempViewName: customer_master_flow1
+    query: select * from customer_master_flow1
     optional:
       persistDataFrame: false
     type: operationThroughSqlQuery
 controlPort:
-  dataQualityRules: {}
+  dataQualityRules:
+    NullValueCheck:
+      productState:
+        checks:
+          - column: Card_Id
+            expression: <=
+            number: 1
+            owner: Miloni Shah
+        referenceAlias: Write_to_iceberg_for_Customer_flow1
