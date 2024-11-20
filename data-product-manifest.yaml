@@ -1,12 +1,12 @@
-version: 0.0.9
-jobId: "1039"
-jobName: Ayush DP
+version: 0.0.1
+jobId: "1178"
+jobName: New Sales
 jobType: Source Aligned Data Product
 developerId: fb302eb3-31f0-4180-8dcd-ff6b2305ad54
 domain: finance
-alias: loadicebergfilter
+alias: salesregion
 discoveryPort:
-  name: Ayush DP
+  name: New Sales
 inputPorts:
   - alias: S3_Dataset_Sales_1
     isDynamic: true
@@ -22,7 +22,7 @@ inputPorts:
     type: inputDelimited
 productState:
   isDynamic: true
-  alias: loadicebergfilter
+  alias: salesregion
   retentionVersions: ""
   logicalSchema:
     properties:
@@ -30,7 +30,7 @@ productState:
         type: STRING
         description: Unique identifier for each region.
         sourceColumn: region
-        sourceTable: "-"
+        sourceTable: customers
       zsmcode:
         type: STRING
         description: zsmcode
@@ -134,7 +134,7 @@ productState:
   stateStoreType: loadDataIceberg
   isProfilingEnabled: false
   updateStrategy: Overwrite
-  tableName: s3source.filtertable
+  tableName: s3source.sales_region
   warehousePath: s3://bp-spark-sql-library-test-acc/
   catalogName: glue
   optional:
@@ -143,18 +143,26 @@ productState:
     enforceSchema: false
     enforceSchemaMethod: Warning
     catalogType: glue
-  refreshInterval: 8 8 * * *
+  refreshInterval: None
 transformation:
   - isDynamic: true
     alias: Spark_SQL_1
-    description: tableayushspark
+    description: tableayushsparktransform
     sequence: 2
     inputDataFrameList:
       - inputDataFrame: S3_Dataset_Sales_1
-        tempViewName: filtertable
-    query: select * from filtertable
+        tempViewName: sales_region
+    query: select * from sales_region
     optional:
       persistDataFrame: false
     type: operationThroughSqlQuery
 controlPort:
-  dataQualityRules: {}
+  dataQualityRules:
+    NullValueCheck:
+      productState:
+        checks:
+          - column: Customer_ID
+            expression: ">="
+            number: 1
+            owner: Ayush
+        referenceAlias: salesregion
