@@ -1,3 +1,4 @@
+version: 0.0.9
 jobId: "1039"
 jobName: Ayush DP
 jobType: Source Aligned Data Product
@@ -150,7 +151,7 @@ transformation:
     sequence: 2
     inputDataFrameList:
       - inputDataFrame: S3_Dataset_Sales_1
-        tempViewName: filtertable114030
+        tempViewName: filtertable
     query: select * from filtertable
     optional:
       persistDataFrame: false
