@@ -1,102 +1,140 @@
-version: 0.0.2
-jobId: "1030"
-jobName: Ayush ADP
-jobType: Aggregated Data Product
+version: 0.0.1
+jobId: "1175"
+jobName: Precinct Sales
+jobType: Source Aligned Data Product
 developerId: fb302eb3-31f0-4180-8dcd-ff6b2305ad54
-domain: sale
-alias: loadicebergforayush
+domain: finance
+alias: loadicebergfiltercopy
 discoveryPort:
-  name: Ayush ADP
+  name: Precinct Sales
 inputPorts:
-  - alias: Customer_Details_1
+  - alias: S3_Dataset_Sales_1
     isDynamic: true
-    dataProductUrn: urn:dv:dataproduct:29833507-5963-4a99-9766-da2b98304796
-    filter: ""
-    projection: ""
+    path: s3://dataverse-sale/datasets/##file_name##
     optional:
       persistDataFrame: false
-    type: dataproduct
+      advanceOptions:
+        delimiter: ","
+      enableDataReconciliation: false
+      enforceSchema: false
+      connection: S3 Connection
+      dataSetUrn: urn:dv:dataset:05f10c43-7d68-4f85-8038-4dead11f9c94
+    type: inputDelimited
 productState:
   isDynamic: true
-  alias: loadicebergforayush
+  alias: loadicebergfiltercopy
   retentionVersions: ""
   logicalSchema:
     properties:
-      Customer_ID:
+      region:
         type: STRING
-        description: ""
-      First_Name:
+        description: Unique identifier for each region.
+        sourceColumn: region
+        sourceTable: "-"
+      zsmcode:
         type: STRING
-        description: ""
+        description: zsmcode
+        sourceColumn: zsmcode
+        sourceTable: customers
         isPII: true
-      Middle_Name:
+      zsmname:
         type: STRING
-        description: ""
+        description: zsmname
+        sourceColumn: zsmname
+        sourceTable: customers
         isPII: true
-      Last_Name:
+      ahcode:
         type: STRING
-        description: ""
+        description: ahcode.
+        sourceColumn: ahcode
+        sourceTable: customers
         isPII: true
-      Date_of_Birth:
+      ahname:
         type: STRING
-        description: ""
+        description: ahname.
+        sourceColumn: ahname
+        sourceTable: customers
         isPII: true
-      Age:
+      asmname:
         type: STRING
-        description: ""
+        description: asmname
+        sourceColumn: asmname
+        sourceTable: customers
       Gender:
         type: STRING
-        description: ""
+        description: Gender of the customer.
+        sourceColumn: Gender
+        sourceTable: customers
       Email:
         type: STRING
-        description: ""
+        description: Email address of the customer.
+        sourceColumn: Email
+        sourceTable: customers
         isPII: true
       Phone_Number:
         type: STRING
-        description: ""
+        description: Phone number of the customer.
+        sourceColumn: Phone_Number
+        sourceTable: customers
         isPII: true
       Loyalty_Id:
         type: STRING
-        description: ""
+        description: Identifier for the loyalty program associated with the customer.
+        sourceColumn: Loyalty_Id
+        sourceTable: customers
       State:
         type: STRING
-        description: ""
+        description: State of residence of the customer.
+        sourceColumn: State
+        sourceTable: customers
       Country:
         type: STRING
-        description: ""
+        description: Country of residence of the customer.
+        sourceColumn: Country
+        sourceTable: customers
       Zipcode:
         type: STRING
-        description: ""
+        description: Zip code of the customer's address.
+        sourceColumn: Zipcode
+        sourceTable: customers
       Household_Income:
         type: STRING
-        description: ""
+        description: Household income of the customer.
+        sourceColumn: Household_Income
+        sourceTable: customers
         isPII: true
       Consent_Flag:
         type: STRING
-        description: ""
+        description: Flag indicating whether the customer has given consent for
+          marketing communication.
+        sourceColumn: Consent_Flag
+        sourceTable: customers
       Employee_Flag:
         type: STRING
-        description: ""
+        description: Flag indicating whether the customer is an employee.
+        sourceColumn: Employee_Flag
+        sourceTable: customers
       Relationship_SPOC_ID:
         type: STRING
-        description: ""
-      Relationship_SPOC_Store_ID:
-        type: STRING
-        description: ""
-      Loyalty_Flag:
-        type: STRING
-        description: ""
+        description: Identifier for the single point of contact (SPOC) associated with
+          the customer's relationship.
+        sourceColumn: Relationship_SPOC_ID
+        sourceTable: customers
       City:
         type: STRING
-        description: ""
+        description: City of residence of the customer.
+        sourceColumn: City
+        sourceTable: customers
       Card_Id:
         type: STRING
-        description: ""
+        description: Identifier for the card associated with the customer.
+        sourceColumn: Card_Id
+        sourceTable: customers
         isPII: true
   stateStoreType: loadDataIceberg
   isProfilingEnabled: false
   updateStrategy: Overwrite
-  tableName: s3Source.ayush_adp_new_dp1
+  tableName: s3source.filtertablecopy
   warehousePath: s3://bp-spark-sql-library-test-acc/
   catalogName: glue
   optional:
@@ -105,16 +143,16 @@ productState:
     enforceSchema: false
     enforceSchemaMethod: Warning
     catalogType: glue
-  refreshInterval: 30 2 * * *
+  refreshInterval: None
 transformation:
   - isDynamic: true
     alias: Spark_SQL_1
-    description: pysparkayushadp
+    description: tableayushspark1
     sequence: 2
     inputDataFrameList:
-      - inputDataFrame: Customer_Details_1
-        tempViewName: ayush_adp_new_dp
-    query: select * from ayush_adp_new_dp
+      - inputDataFrame: S3_Dataset_Sales_1
+        tempViewName: filtertablecopy
+    query: select * from filtertablecopy
     optional:
       persistDataFrame: false
     type: operationThroughSqlQuery
