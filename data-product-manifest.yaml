@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 0.0.2
 jobId: "1178"
 jobName: New Sales
 jobType: Source Aligned Data Product
@@ -162,7 +162,7 @@ controlPort:
       productState:
         checks:
           - column: Customer_ID
-            expression: ">="
+            expression: <=
             number: 1
             owner: Ayush
         referenceAlias: salesregion
