@@ -1,74 +1,140 @@
-version: 0.0.1
-jobId: "778"
-jobName: ADPTiger1
-jobType: Aggregated Data Product
-domain: tiger
-alias: ADPTiger1testing
+version: 0.0.3
+jobId: "1179"
+jobName: New Sales copy
+jobType: Source Aligned Data Product
+developerId: fb302eb3-31f0-4180-8dcd-ff6b2305ad54
+domain: finance
+alias: salesregion1
 discoveryPort:
-  name: ADPTiger1
+  name: New Sales copy
 inputPorts:
-  - alias: TigerTestSADP1_1
+  - alias: S3_Dataset_Sales_1
     isDynamic: true
-    dataProductUrn: urn:dv:dataproduct:af81aa5a-c589-47a3-89fa-c6fd4e6a4c37
-    filter: ""
-    projection: ""
+    path: s3://dataverse-sale/datasets/##file_name##
     optional:
       persistDataFrame: false
-    type: dataproduct
-  - alias: QATestSADP1_1
-    isDynamic: true
-    dataProductUrn: urn:dv:dataproduct:90fb28a2-7bbc-4e60-83d9-c47c78d46fa4
-    filter: ""
-    projection: ""
-    optional:
-      persistDataFrame: false
-    type: dataproduct
+      advanceOptions:
+        delimiter: ","
+      enableDataReconciliation: false
+      enforceSchema: false
+      connection: S3 Connection
+      dataSetUrn: urn:dv:dataset:05f10c43-7d68-4f85-8038-4dead11f9c94
+    type: inputDelimited
 productState:
   isDynamic: true
-  alias: ADPTiger1testing
+  alias: salesregion1
   retentionVersions: ""
   logicalSchema:
     properties:
-      City:
+      region:
         type: STRING
-        description: ""
-      Region:
+        description: Unique identifier for each region.
+        sourceColumn: region
+        sourceTable: customers
+      zsmcode:
         type: STRING
-        description: ""
+        description: zsmcode
+        sourceColumn: zsmcode
+        sourceTable: customers
+        isPII: true
+      zsmname:
+        type: STRING
+        description: zsmname
+        sourceColumn: zsmname
+        sourceTable: customers
+        isPII: true
+      ahcode:
+        type: STRING
+        description: ahcode.
+        sourceColumn: ahcode
+        sourceTable: customers
+        isPII: true
+      ahname:
+        type: STRING
+        description: ahname.
+        sourceColumn: ahname
+        sourceTable: customers
+        isPII: true
+      asmname:
+        type: STRING
+        description: asmname
+        sourceColumn: asmname
+        sourceTable: customers
+      Gender:
+        type: STRING
+        description: Gender of the customer.
+        sourceColumn: Gender
+        sourceTable: customers
+      Email:
+        type: STRING
+        description: Email address of the customer.
+        sourceColumn: Email
+        sourceTable: customers
+        isPII: true
+      Phone_Number:
+        type: STRING
+        description: Phone number of the customer.
+        sourceColumn: Phone_Number
+        sourceTable: customers
+        isPII: true
+      Loyalty_Id:
+        type: STRING
+        description: Identifier for the loyalty program associated with the customer.
+        sourceColumn: Loyalty_Id
+        sourceTable: customers
+      State:
+        type: STRING
+        description: State of residence of the customer.
+        sourceColumn: State
+        sourceTable: customers
       Country:
         type: STRING
-        description: ""
-      Latitude:
+        description: Country of residence of the customer.
+        sourceColumn: Country
+        sourceTable: customers
+      Zipcode:
         type: STRING
-        description: ""
-      Longitude:
+        description: Zip code of the customer's address.
+        sourceColumn: Zipcode
+        sourceTable: customers
+      Household_Income:
         type: STRING
-        description: ""
-      Timezone:
+        description: Household income of the customer.
+        sourceColumn: Household_Income
+        sourceTable: customers
+        isPII: true
+      Consent_Flag:
         type: STRING
-        description: ""
-      Local Time:
+        description: Flag indicating whether the customer has given consent for
+          marketing communication.
+        sourceColumn: Consent_Flag
+        sourceTable: customers
+      Employee_Flag:
         type: STRING
-        description: ""
-      Cloud ID:
+        description: Flag indicating whether the customer is an employee.
+        sourceColumn: Employee_Flag
+        sourceTable: customers
+      Relationship_SPOC_ID:
         type: STRING
-        description: ""
-      Feels like Celcius:
+        description: Identifier for the single point of contact (SPOC) associated with
+          the customer's relationship.
+        sourceColumn: Relationship_SPOC_ID
+        sourceTable: customers
+      City:
         type: STRING
-        description: ""
-      Feels like fahrenheit:
+        description: City of residence of the customer.
+        sourceColumn: City
+        sourceTable: customers
+      Card_Id:
         type: STRING
-        description: ""
-      Gust speed in kph:
-        type: STRING
-        description: ""
-      Gust speed in mph:
-        type: STRING
-        description: ""
+        description: Identifier for the card associated with the customer.
+        sourceColumn: Card_Id
+        sourceTable: customers
+        isPII: true
   stateStoreType: loadDataIceberg
   isProfilingEnabled: false
   updateStrategy: Overwrite
-  tableName: s3Source.ADPTiger1
+  tableName: s3source.sales_region1
   warehousePath: s3://bp-spark-sql-library-test-acc/
   catalogName: glue
   optional:
@@ -81,16 +147,22 @@ productState:
 transformation:
   - isDynamic: true
     alias: Spark_SQL_1
-    description: ADPTiger1
-    sequence: 3
+    description: tableayushsparktransform1
+    sequence: 2
     inputDataFrameList:
-      - inputDataFrame: TigerTestSADP1_1
-        tempViewName: ADPTiger1SADP1
-      - inputDataFrame: QATestSADP1_1
-        tempViewName: ADPTiger1QASADP!
-    query: Select * from ADPTiger1
+      - inputDataFrame: S3_Dataset_Sales_1
+        tempViewName: sales_region1
+    query: select * from sales_region1
     optional:
       persistDataFrame: false
     type: operationThroughSqlQuery
 controlPort:
-  dataQualityRules: {}
+  dataQualityRules:
+    NullValueCheck:
+      productState:
+        checks:
+          - column: Customer_ID
+            expression: <=
+            number: 1
+            owner: Ayush
+        referenceAlias: salesregion1
