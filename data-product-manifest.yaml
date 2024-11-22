@@ -1,3 +1,4 @@
+version: 0.0.7
 jobId: "833"
 jobName: AllSalesData
 jobType: Source Aligned Data Product
@@ -156,4 +157,44 @@ transformation:
       persistDataFrame: false
     type: operationThroughSqlQuery
 controlPort:
-  dataQualityRules: {}
+  dataQualityRules:
+    RecordCountCheck:
+      productState:
+        expression: ">="
+        number: 1
+        owner: Ayush Jain
+        referenceAlias: loadtgenaidatatotable
+    NullValueCheck:
+      productState:
+        checks:
+          - column: pk_ID
+            expression: <=
+          - column: rowID
+            expression: <=
+        referenceAlias: loadtgenaidatatotable
+    NullCombinationCheck:
+      productState:
+        checks:
+          - columns:
+              - pk_ID
+              - REGION
+        referenceAlias: loadtgenaidatatotable
+    UniquenessCheck:
+      productState:
+        checks:
+          - column: pk_ID
+        referenceAlias: loadtgenaidatatotable
+    UniqueCombinationCheck:
+      productState:
+        checks:
+          - columns:
+              - pk_ID
+              - rowID
+        referenceAlias: loadtgenaidatatotable
+    UnacceptableTextValueCheck:
+      productState:
+        checks:
+          - column: rowID
+            valueList:
+              - test
+        referenceAlias: loadtgenaidatatotable
