@@ -1,140 +1,227 @@
-version: 0.0.3
-jobId: "1179"
-jobName: New Sales copy
+jobId: "1187"
+jobName: quality_crqs_historical_dp-uni
 jobType: Source Aligned Data Product
 developerId: fb302eb3-31f0-4180-8dcd-ff6b2305ad54
-domain: finance
-alias: salesregion1
+domain: sale
+alias: quality_crqs_historical_dp_transform
 discoveryPort:
-  name: New Sales copy
+  name: quality_crqs_historical_dp-uni
 inputPorts:
-  - alias: S3_Dataset_Sales_1
+  - alias: quality_crqs_historical_dp_1
     isDynamic: true
-    path: s3://dataverse-sale/datasets/##file_name##
+    connection: Uni-Postgres-dont-use
+    tableName/query: select * from iceberg.quality_crqs_historical_dp limit 10
     optional:
       persistDataFrame: false
-      advanceOptions:
-        delimiter: ","
       enableDataReconciliation: false
       enforceSchema: false
-      connection: S3 Connection
-      dataSetUrn: urn:dv:dataset:05f10c43-7d68-4f85-8038-4dead11f9c94
-    type: inputDelimited
+      dataSetUrn: urn:dv:dataset:020dda39-79bd-4438-a400-57201f73b35d
+    type: readPostGreSqlDbUsingJdbc
 productState:
   isDynamic: true
-  alias: salesregion1
+  alias: quality_crqs_historical_dp_transform
   retentionVersions: ""
   logicalSchema:
     properties:
-      region:
+      __op:
         type: STRING
-        description: Unique identifier for each region.
-        sourceColumn: region
-        sourceTable: customers
-      zsmcode:
+        description: Operation type
+        sourceColumn: "-"
+        sourceTable: "-"
+      __deleted:
         type: STRING
-        description: zsmcode
-        sourceColumn: zsmcode
-        sourceTable: customers
-        isPII: true
-      zsmname:
+        description: Deletion status
+        sourceColumn: "-"
+        sourceTable: "-"
+      id_category_stop:
         type: STRING
-        description: zsmname
-        sourceColumn: zsmname
-        sourceTable: customers
-        isPII: true
-      ahcode:
+        description: Category stop ID
+        sourceColumn: "-"
+        sourceTable: "-"
+      fl_applies:
         type: STRING
-        description: ahcode.
-        sourceColumn: ahcode
-        sourceTable: customers
-        isPII: true
-      ahname:
+        description: Applies flag
+        sourceColumn: "-"
+        sourceTable: "-"
+      cd_lot:
         type: STRING
-        description: ahname.
-        sourceColumn: ahname
-        sourceTable: customers
-        isPII: true
-      asmname:
+        description: Lot code
+        sourceColumn: "-"
+        sourceTable: "-"
+      de_comment_quality:
         type: STRING
-        description: asmname
-        sourceColumn: asmname
-        sourceTable: customers
-      Gender:
+        description: Quality comment
+        sourceColumn: "-"
+        sourceTable: "-"
+      de_comentario_operador:
         type: STRING
-        description: Gender of the customer.
-        sourceColumn: Gender
-        sourceTable: customers
-      Email:
+        description: Operator comment
+        sourceColumn: "-"
+        sourceTable: "-"
+      id_pqs_observation_old:
         type: STRING
-        description: Email address of the customer.
-        sourceColumn: Email
-        sourceTable: customers
-        isPII: true
-      Phone_Number:
+        description: Old PQS observation ID
+        sourceColumn: "-"
+        sourceTable: "-"
+      dt_modified:
+        type: DATETIME
+        description: Modification timestamp
+        sourceColumn: "-"
+        sourceTable: "-"
+      id_ruta:
         type: STRING
-        description: Phone number of the customer.
-        sourceColumn: Phone_Number
-        sourceTable: customers
-        isPII: true
-      Loyalty_Id:
+        description: Route ID
+        sourceColumn: "-"
+        sourceTable: "-"
+      id_loss:
         type: STRING
-        description: Identifier for the loyalty program associated with the customer.
-        sourceColumn: Loyalty_Id
-        sourceTable: customers
-      State:
+        description: Loss ID
+        sourceColumn: "-"
+        sourceTable: "-"
+      fl_shift:
         type: STRING
-        description: State of residence of the customer.
-        sourceColumn: State
-        sourceTable: customers
-      Country:
+        description: Shift flag
+        sourceColumn: "-"
+        sourceTable: "-"
+      dt_modified_busqueda:
         type: STRING
-        description: Country of residence of the customer.
-        sourceColumn: Country
-        sourceTable: customers
-      Zipcode:
+        description: Search modified timestamp
+        sourceColumn: "-"
+        sourceTable: "-"
+      dt_created:
+        type: DATETIME
+        description: Creation timestamp
+        sourceColumn: "-"
+        sourceTable: "-"
+      fl_state:
         type: STRING
-        description: Zip code of the customer's address.
-        sourceColumn: Zipcode
-        sourceTable: customers
-      Household_Income:
+        description: State flag
+        sourceColumn: "-"
+        sourceTable: "-"
+      fl_created_flag:
         type: STRING
-        description: Household income of the customer.
-        sourceColumn: Household_Income
-        sourceTable: customers
-        isPII: true
-      Consent_Flag:
+        description: Creation flag
+        sourceColumn: "-"
+        sourceTable: "-"
+      id_po:
         type: STRING
-        description: Flag indicating whether the customer has given consent for
-          marketing communication.
-        sourceColumn: Consent_Flag
-        sourceTable: customers
-      Employee_Flag:
+        description: PO ID
+        sourceColumn: "-"
+        sourceTable: "-"
+      id_SKU:
         type: STRING
-        description: Flag indicating whether the customer is an employee.
-        sourceColumn: Employee_Flag
-        sourceTable: customers
-      Relationship_SPOC_ID:
+        description: SKU ID
+        sourceColumn: "-"
+        sourceTable: "-"
+      id_user:
         type: STRING
-        description: Identifier for the single point of contact (SPOC) associated with
-          the customer's relationship.
-        sourceColumn: Relationship_SPOC_ID
-        sourceTable: customers
-      City:
+        description: User ID
+        sourceColumn: "-"
+        sourceTable: "-"
+      fl_shift_realised:
         type: STRING
-        description: City of residence of the customer.
-        sourceColumn: City
-        sourceTable: customers
-      Card_Id:
+        description: Shift realised flag
+        sourceColumn: "-"
+        sourceTable: "-"
+      fl_draft:
         type: STRING
-        description: Identifier for the card associated with the customer.
-        sourceColumn: Card_Id
-        sourceTable: customers
-        isPII: true
+        description: Draft flag
+        sourceColumn: "-"
+        sourceTable: "-"
+      fl_redo:
+        type: STRING
+        description: Redo flag
+        sourceColumn: "-"
+        sourceTable: "-"
+      fl_editing:
+        type: STRING
+        description: Editing flag
+        sourceColumn: "-"
+        sourceTable: "-"
+      fe_made_real:
+        type: STRING
+        description: Made real timestamp
+        sourceColumn: "-"
+        sourceTable: "-"
+      fe_made:
+        type: STRING
+        description: Made timestamp
+        sourceColumn: "-"
+        sourceTable: "-"
+      fe_validation:
+        type: STRING
+        description: Validation timestamp
+        sourceColumn: "-"
+        sourceTable: "-"
+      id_user_validated:
+        type: STRING
+        description: User validated ID
+        sourceColumn: "-"
+        sourceTable: "-"
+      fl_validated:
+        type: STRING
+        description: Validated flag
+        sourceColumn: "-"
+        sourceTable: "-"
+      fl_foto:
+        type: STRING
+        description: Photo flag
+        sourceColumn: "-"
+        sourceTable: "-"
+      dt_scheduled:
+        type: STRING
+        description: Scheduled timestamp
+        sourceColumn: "-"
+        sourceTable: "-"
+      nm_version:
+        type: STRING
+        description: Version number
+        sourceColumn: "-"
+        sourceTable: "-"
+      nm_version_bu:
+        type: STRING
+        description: Business unit version number
+        sourceColumn: "-"
+        sourceTable: "-"
+      nm_version_bg:
+        type: STRING
+        description: Background version number
+        sourceColumn: "-"
+        sourceTable: "-"
+      id_machine:
+        type: STRING
+        description: Machine ID
+        sourceColumn: "-"
+        sourceTable: "-"
+      id_line:
+        type: STRING
+        description: Line ID
+        sourceColumn: "-"
+        sourceTable: "-"
+      id_pqs:
+        type: STRING
+        description: PQS ID
+        sourceColumn: "-"
+        sourceTable: "-"
+      id_pqs_observation:
+        type: STRING
+        description: PQS observation ID
+        sourceColumn: "-"
+        sourceTable: "-"
+      id_factory:
+        type: STRING
+        description: Factory ID
+        sourceColumn: "-"
+        sourceTable: "-"
+      messageProducedTimestampAsField:
+        type: DATETIME
+        description: Produced message timestamp
+        sourceColumn: "-"
+        sourceTable: "-"
   stateStoreType: loadDataIceberg
   isProfilingEnabled: false
   updateStrategy: Overwrite
-  tableName: s3source.sales_region1
+  tableName: s3source.quality_crqs_historical_dp
   warehousePath: s3://bp-spark-sql-library-test-acc/
   catalogName: glue
   optional:
@@ -147,22 +234,14 @@ productState:
 transformation:
   - isDynamic: true
     alias: Spark_SQL_1
-    description: tableayushsparktransform1
+    description: quality_crqs_historical_dp
     sequence: 2
     inputDataFrameList:
-      - inputDataFrame: S3_Dataset_Sales_1
-        tempViewName: sales_region1
-    query: select * from sales_region1
+      - inputDataFrame: quality_crqs_historical_dp_1
+        tempViewName: quality_crqs_historical_dp
+    query: select * from quality_crqs_historical_dp
     optional:
       persistDataFrame: false
     type: operationThroughSqlQuery
 controlPort:
-  dataQualityRules:
-    NullValueCheck:
-      productState:
-        checks:
-          - column: Customer_ID
-            expression: <=
-            number: 1
-            owner: Ayush
-        referenceAlias: salesregion1
+  dataQualityRules: {}
