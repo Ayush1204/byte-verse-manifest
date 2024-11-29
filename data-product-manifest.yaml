@@ -41,6 +41,8 @@ productState:
       S:
         type: STRING
         description: ""
+        sourceColumn: "-"
+        sourceTable: "-"
   stateStoreType: loadDataIceberg
   isProfilingEnabled: false
   updateStrategy: Overwrite
