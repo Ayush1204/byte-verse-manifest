@@ -1,12 +1,11 @@
-version: 0.0.2
-jobId: "992"
-jobName: BG_DP_Test_QA copy
+jobId: "977"
+jobName: BG DP Test QA
 jobType: Source Aligned Data Product
 developerId: fb302eb3-31f0-4180-8dcd-ff6b2305ad54
 domain: sale
-alias: write_down_to_sale_
+alias: write_update_iceberg_Bg123_
 discoveryPort:
-  name: BG_DP_Test_QA copy
+  name: BG DP Test QA
 inputPorts:
   - alias: Secondary_Sales_1
     isDynamic: true
@@ -22,7 +21,7 @@ inputPorts:
     type: inputParquet
 productState:
   isDynamic: true
-  alias: write_down_to_sale_
+  alias: write_update_iceberg_Bg123_
   retentionVersions: ""
   logicalSchema:
     properties:
@@ -116,7 +115,7 @@ productState:
   stateStoreType: loadDataIceberg
   isProfilingEnabled: false
   updateStrategy: Overwrite
-  tableName: s3source.salestestupdate
+  tableName: "s3source.dummy_sales_test_updateBg123 "
   warehousePath: s3://bp-spark-sql-library-test-acc/
   catalogName: glue
   optional:
@@ -129,12 +128,12 @@ productState:
 transformation:
   - isDynamic: true
     alias: Spark_SQL_1
-    description: testSpark1
+    description: SparktestBg123
     sequence: 2
     inputDataFrameList:
       - inputDataFrame: Secondary_Sales_1
-        tempViewName: salestestupdate
-    query: Select * from salestestupdate
+        tempViewName: sales_table_Bg123
+    query: Select * from sales_table_Bg123
     optional:
       persistDataFrame: false
     type: operationThroughSqlQuery
