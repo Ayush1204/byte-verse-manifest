@@ -1,102 +1,166 @@
-version: 0.0.2
-jobId: "813"
-jobName: chainsadp2
-jobType: Source Aligned Data Product
-domain: sale
-alias: allogether11
-discoveryPort:
-  name: chainsadp2
-inputPorts:
-  - alias: sadp_301_ayush_1
-    isDynamic: true
-    dataProductUrn: urn:dv:dataproduct:ffbc1b0d-f845-42d2-b5ff-9357a40dbbf6
-    filter: ""
-    projection: ""
-    optional:
-      persistDataFrame: false
-    type: dataproduct
-  - alias: sadp_401_ayush_1
-    isDynamic: true
-    dataProductUrn: urn:dv:dataproduct:b89990e9-b99b-49a4-8b25-46603f78a43a
-    filter: ""
-    projection: ""
-    optional:
-      persistDataFrame: false
-    type: dataproduct
-productState:
-  isDynamic: true
-  alias: allogether11
-  retentionVersions: ""
-  logicalSchema:
-    properties:
-      Feels like fahrenheit:
-        type: STRING
-        description: ""
-      Gust speed in kph:
-        type: STRING
-        description: ""
-      Gust speed in mph:
-        type: STRING
-        description: ""
-      Humidity:
-        type: STRING
-        description: ""
-      Is day time?:
-        type: STRING
-        description: ""
-      Last update:
-        type: STRING
-        description: ""
-      Last updated time in epoch:
-        type: STRING
-        description: ""
-      Precipitation in inch:
-        type: STRING
-        description: ""
-      Precipitation in mm:
-        type: STRING
-        description: ""
-      Pressure:
-        type: STRING
-        description: ""
-      Precipitation in mb:
-        type: STRING
-        description: ""
-      Temperature in celcius:
-        type: STRING
-        description: ""
-      Temperature in fahrenheit:
-        type: STRING
-        description: ""
-      UV:
-        type: STRING
-        description: ""
-  stateStoreType: loadDataIceberg
-  isProfilingEnabled: false
-  updateStrategy: Overwrite
-  tableName: s3Source.supertable
-  warehousePath: s3://bp-spark-sql-library-test-acc/
-  catalogName: glue
-  optional:
-    persistDataFrame: false
-    enableDataReconciliation: false
-    enforceSchema: true
-    enforceSchemaMethod: Warning
-    catalogType: glue
-  refreshInterval: None
-transformation:
-  - isDynamic: true
-    alias: Spark_SQL_1
-    description: chainpyspark1
-    sequence: 3
-    inputDataFrameList:
-      - inputDataFrame: sadp_301_ayush_1
-        tempViewName: supertables
-      - inputDataFrame: sadp_401_ayush_1
-        tempViewName: supertables1
-    query: select * from supertable
-    optional:
-      persistDataFrame: false
-    type: operationThroughSqlQuery
-controlPort:
-  dataQualityRules: {}
+manifest:
+    jobId: "1007"
+    jobName: Electric Volume
+    jobType: Source Aligned Data Product
+    developerId: fb302eb3-31f0-4180-8dcd-ff6b2305ad54
+    domain: sale
+    alias: loadtgenaidatatotableelc
+    discoveryPort:
+        name: Electric Volume
+    inputPorts:
+        - alias: Secondary_Sales_1
+          isDynamic: true
+          path: s3://bp-spark-sql-library-test-acc/secondary_sales_parquet/
+          optional:
+              persistDataFrame: false
+              advanceOptions:
+                  mergeSchema: true
+              enableDataReconciliation: false
+              enforceSchema: false
+              connection: Base S3 Connectivity
+              dataSetUrn: urn:dv:dataset:5a075ca4-46b2-4988-ba1b-16c0cdf30f4f
+          type: inputParquet
+    productState:
+        isDynamic: true
+        alias: loadtgenaidatatotableelc
+        retentionVersions: ""
+        logicalSchema:
+            properties:
+                Customer_ID:
+                    type: STRING
+                    description: Unique identifier for each customer.
+                    sourceColumn: Customer_ID
+                    sourceTable: customers
+                First_Name:
+                    type: STRING
+                    description: First name of the customer.
+                    sourceColumn: First_Name
+                    sourceTable: customers
+                    isPII: true
+                Middle_Name:
+                    type: STRING
+                    description: Middle name of the customer.
+                    sourceColumn: Middle_Name
+                    sourceTable: customers
+                    isPII: true
+                Last_Name:
+                    type: STRING
+                    description: Last name of the customer.
+                    sourceColumn: Last_Name
+                    sourceTable: customers
+                    isPII: true
+                Date_of_Birth:
+                    type: STRING
+                    description: Date of birth of the customer.
+                    sourceColumn: Date_of_Birth
+                    sourceTable: customers
+                    isPII: true
+                Age:
+                    type: STRING
+                    description: Age of the customer.
+                    sourceColumn: Age
+                    sourceTable: customers
+                Gender:
+                    type: STRING
+                    description: Gender of the customer.
+                    sourceColumn: Gender
+                    sourceTable: customers
+                Email:
+                    type: STRING
+                    description: Email address of the customer.
+                    sourceColumn: Email
+                    sourceTable: customers
+                    isPII: true
+                Phone_Number:
+                    type: STRING
+                    description: Phone number of the customer.
+                    sourceColumn: Phone_Number
+                    sourceTable: customers
+                    isPII: true
+                Loyalty_Id:
+                    type: STRING
+                    description: Identifier for the loyalty program associated with the customer.
+                    sourceColumn: Loyalty_Id
+                    sourceTable: customers
+                State:
+                    type: STRING
+                    description: State of residence of the customer.
+                    sourceColumn: State
+                    sourceTable: customers
+                Country:
+                    type: STRING
+                    description: Country of residence of the customer.
+                    sourceColumn: Country
+                    sourceTable: customers
+                Zipcode:
+                    type: STRING
+                    description: Zip code of the customer's address.
+                    sourceColumn: Zipcode
+                    sourceTable: customers
+                Household_Income:
+                    type: STRING
+                    description: Household income of the customer.
+                    sourceColumn: Household_Income
+                    sourceTable: customers
+                    isPII: true
+                Consent_Flag:
+                    type: STRING
+                    description: Flag indicating whether the customer has given consent for
+                        marketing communication.
+                    sourceColumn: Consent_Flag
+                    sourceTable: customers
+                Employee_Flag:
+                    type: STRING
+                    description: Flag indicating whether the customer is an employee.
+                    sourceColumn: Employee_Flag
+                    sourceTable: customers
+                Relationship_SPOC_ID:
+                    type: STRING
+                    description: Identifier for the single point of contact (SPOC) associated with
+                        the customer's relationship.
+                    sourceColumn: Relationship_SPOC_ID
+                    sourceTable: customers
+                Relationship_SPOC_Store_ID:
+                    type: STRING
+                    description: Identifier for the store associated with the single point of
+                        contact (SPOC) of the customer's relationship.
+                    sourceColumn: Relationship_SPOC_Store_ID
+                    sourceTable: customers
+                City:
+                    type: STRING
+                    description: City of residence of the customer.
+                    sourceColumn: City
+                    sourceTable: customers
+                Card_Id:
+                    type: STRING
+                    description: Identifier for the card associated with the customer.
+                    sourceColumn: Card_Id
+                    sourceTable: customers
+                    isPII: true
+        stateStoreType: loadDataIceberg
+        isProfilingEnabled: false
+        updateStrategy: Append
+        tableName: s3Source.all_sales_dataelc
+        warehousePath: s3://bp-spark-sql-library-test-acc/
+        catalogName: glue
+        optional:
+            persistDataFrame: false
+            enableDataReconciliation: false
+            enforceSchema: false
+            enforceSchemaMethod: Warning
+            catalogType: glue
+    transformation:
+        - isDynamic: true
+          alias: Spark_SQL_1
+          description: loaddatatosparksql
+          sequence: 2
+          inputDataFrameList:
+              - inputDataFrame: Secondary_Sales_1
+                tempViewName: all_sales_data
+          query: Select * from all_sales_data
+          optional:
+              persistDataFrame: false
+          type: operationThroughSqlQuery
+    controlPort:
+        dataQualityRules: {}
+productResolutionInfo: {}
